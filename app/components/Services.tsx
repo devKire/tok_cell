@@ -9,7 +9,7 @@ import {
   Wrench,
   ArrowRight,
 } from 'lucide-react';
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { CardData, SwipeCards } from '../../components/ui/swipe-cards';
 import { CometCard } from '../../components/ui/comet-card';
 
@@ -57,33 +57,26 @@ interface CustomSwipeCardsProps {
   onAllSwiped: () => void;
 }
 
-function CustomSwipeCards({
-  data,
-  cardsKey,
-  onAllSwiped,
-}: CustomSwipeCardsProps) {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [remainingCards, setRemainingCards] = useState(data.length);
+function CustomSwipeCards({ data, onAllSwiped }: CustomSwipeCardsProps) {
+  const [remainingCards, setRemainingCards] = useState(() => data.length);
+  const hasNotifiedRef = useRef(false);
+
+  useEffect(() => {
+    if (remainingCards <= 0 && !hasNotifiedRef.current) {
+      hasNotifiedRef.current = true;
+
+      setTimeout(() => {
+        onAllSwiped();
+      }, 0);
+    }
+  }, [remainingCards, onAllSwiped]);
 
   const handleCardSwipe = () => {
-    setRemainingCards((prev) => {
-      const updated = prev - 1;
-
-      if (updated <= 0) {
-        onAllSwiped();
-      }
-
-      return updated;
-    });
+    setRemainingCards((prev) => prev - 1);
   };
 
   return (
-    <SwipeCards
-      key={cardsKey}
-      data={data}
-      onSwipe={handleCardSwipe}
-      className="h-[500px]"
-    />
+    <SwipeCards data={data} onSwipe={handleCardSwipe} className="h-[500px]" />
   );
 }
 
@@ -143,6 +136,7 @@ export default function Services() {
           className="block w-full md:hidden"
         >
           <CustomSwipeCards
+            key={cardsKey}
             data={swipeCardsData}
             cardsKey={cardsKey}
             onAllSwiped={handleAllCardsSwiped}
