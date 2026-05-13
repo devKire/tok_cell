@@ -34,3 +34,130 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+# Jc & Santana Celulares — Sistema Web
+
+Sistema de orçamentos e pedidos de assistência técnica de celulares.
+
+## Tecnologias
+
+- **Next.js 15** (App Router)
+- **TypeScript**
+- **Prisma ORM** + PostgreSQL
+- **Tailwind CSS** + **shadcn/ui**
+- **React Context** (carrinho)
+- **Sonner** (toasts)
+
+## Estrutura de Pastas
+
+```
+app/
+├── layout.tsx            # Layout raiz com CartProvider
+├── page.tsx              # Home — Hero + Benefícios
+├── globals.css
+├── checkout/
+│   └── page.tsx          # Formulário + integração WhatsApp
+├── servicos/
+│   ├── page.tsx          # Passo 1: Marcas
+│   └── [brand]/
+│       ├── page.tsx      # Passo 2: Linhas e modelos
+│       └── [line]/
+│           └── [model]/
+│               └── page.tsx  # Passo 3: Serviços
+└── admin/
+    ├── layout.tsx        # Sidebar admin
+    ├── page.tsx          # Dashboard
+    ├── orders/page.tsx   # Pedidos
+    ├── brands/page.tsx   # CRUD marcas
+    ├── services/page.tsx # CRUD serviços
+    └── settings/page.tsx # Configurações
+
+components/
+├── layout/
+│   ├── Header.tsx
+│   └── Footer.tsx
+├── cart/
+│   └── CartDrawer.tsx
+├── device/
+│   └── BrandCard.tsx
+├── services/
+│   └── ServiceSelector.tsx
+├── SectionTitle.tsx
+├── Breadcrumb.tsx
+└── WhatsAppButton.tsx
+
+actions/
+└── index.ts              # Server Actions (getBrands, getOrders, etc.)
+
+hooks/
+└── use-cart.tsx           # CartProvider + useCart
+
+lib/
+├── prisma.ts             # PrismaClient singleton
+└── whatsapp.ts           # Formatação da mensagem WhatsApp
+
+types/
+└── index.ts              # Tipagem completa
+
+prisma/
+├── schema.prisma         # Schema completo
+└── seed.ts               # Dados iniciais
+```
+
+## Setup
+
+```bash
+# 1. Instalar dependências
+npm install
+
+# 2. Copiar variáveis de ambiente
+cp .env.example .env
+# Editar DATABASE_URL no .env
+
+# 3. Rodar migrations
+npx prisma migrate dev --name init
+
+# 4. Popular banco com dados iniciais
+npx prisma db seed
+
+# 5. Iniciar servidor
+npm run dev
+```
+
+## .env.example
+
+```env
+DATABASE_URL="postgresql://user:password@localhost:5432/jc_santana"
+NEXTAUTH_SECRET="sua-secret-key"
+```
+
+## package.json (scripts adicionais)
+
+```json
+{
+  "prisma": {
+    "seed": "ts-node --compiler-options {\"module\":\"CommonJS\"} prisma/seed.ts"
+  }
+}
+```
+
+## Regras de negócio
+
+| Regra                  | Valor                        |
+| ---------------------- | ---------------------------- |
+| Desconto multi-serviço | 5% (≥ 2 serviços)            |
+| Taxa de deslocamento   | +7% (atendimento No Local)   |
+| Número WhatsApp        | 5547997513609                |
+| Endereço               | Adhemar Garcia, Joinville/SC |
+
+## Fluxo do cliente
+
+```
+Home → Marcas → Linha/Modelos → Serviços → Carrinho → Checkout → WhatsApp
+```
+
+## Componentes shadcn/ui necessários
+
+```bash
+npx shadcn@latest add button card select dialog sheet sonner
+```

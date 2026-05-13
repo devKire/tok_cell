@@ -1,0 +1,261 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Get a free hosted Postgres database in seconds: `npx create-db`
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+
+// ─── Enums ───────────────────────────────────────────────
+
+enum AtendimentoType {
+  LOJA
+  LOCAL
+  LOJA_E_LOCAL
+}
+
+enum ServiceType {
+  TROCA_TELA
+  TROCA_VIDRO
+  BATERIA
+  COMPONENTE
+  CAMERA
+  TAMPA
+  LENTE
+  LIMPEZA
+  FACE_ID
+  OUTRO
+}
+
+enum OrderStatus {
+  PENDING
+  CONFIRMED
+  IN_PROGRESS
+  COMPLETED
+  CANCELED
+}
+
+enum UserRole {
+  ADMIN
+  STAFF
+}
+
+// ─── Identidade / Admin ───────────────────────────────────
+
+model User {
+  id        String   @id @default(cuid())
+  name      String
+  email     String   @unique
+  password  String
+  role      UserRole @default(STAFF)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([email])
+}
+
+model Settings {
+  id              String  @id @default(cuid())
+  whatsapp        String
+  address         String
+  city            String
+  state           String
+  multiDiscount   Float   @default(5)
+  locationFee     Float   @default(7)
+  minServicesDiscount Int @default(2)
+  updatedAt       DateTime @updatedAt
+}
+
+model Banner {
+  id        String   @id @default(cuid())
+  title     String
+  subtitle  String?
+  imageUrl  String
+  linkUrl   String?
+  active    Boolean  @default(true)
+  order     Int      @default(0)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Testimonial {
+  id        String   @id @default(cuid())
+  name      String
+  avatar    String?
+  rating    Int      @default(5)
+  content   String   @db.Text
+  device    String?
+  active    Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+// ─── Catálogo de Dispositivos ─────────────────────────────
+
+model Brand {
+  id       String       @id @default(cuid())
+  name     String       @unique
+  slug     String       @unique
+  imageUrl String?
+  active   Boolean      @default(true)
+  order    Int          @default(0)
+  lines    DeviceLine[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([slug])
+}
+
+model DeviceLine {
+  id      String        @id @default(cuid())
+  name    String
+  slug    String
+  brandId String
+  brand   Brand         @relation(fields: [brandId], references: [id], onDelete: Cascade)
+  models  DeviceModel[]
+  active  Boolean       @default(true)
+  order   Int           @default(0)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([brandId, slug])
+  @@index([brandId])
+}
+
+model DeviceModel {
+  id         String    @id @default(cuid())
+  name       String
+  slug       String
+  lineId     String
+  line       DeviceLine @relation(fields: [lineId], references: [id], onDelete: Cascade)
+  imageUrl   String?
+  active     Boolean   @default(true)
+  order      Int       @default(0)
+  services   Service[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([lineId, slug])
+  @@index([lineId])
+}
+
+// ─── Catálogo de Serviços ─────────────────────────────────
+
+model Service {
+  id              String          @id @default(cuid())
+  name            String
+  slug            String
+  description     String          @db.Text
+  type            ServiceType     @default(OUTRO)
+  atendimento     AtendimentoType @default(LOJA_E_LOCAL)
+  originalPrice   Decimal?        @db.Decimal(10, 2)
+  price           Decimal         @db.Decimal(10, 2)
+  installTime     String
+  isAttempt       Boolean         @default(false)
+  promotionBadge  String?
+  active          Boolean         @default(true)
+  order           Int             @default(0)
+
+  modelId    String
+  model      DeviceModel      @relation(fields: [modelId], references: [id], onDelete: Cascade)
+  variants   ServiceVariant[]
+  components ServiceComponent[]
+  orderItems OrderItem[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([modelId, slug])
+  @@index([modelId])
+  @@index([type])
+}
+
+model ServiceVariant {
+  id        String  @id @default(cuid())
+  name      String
+  price     Decimal @db.Decimal(10, 2)
+  serviceId String
+  service   Service @relation(fields: [serviceId], references: [id], onDelete: Cascade)
+  active    Boolean @default(true)
+  order     Int     @default(0)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([serviceId])
+}
+
+model ServiceComponent {
+  id        String  @id @default(cuid())
+  name      String
+  price     Decimal @db.Decimal(10, 2)
+  serviceId String
+  service   Service @relation(fields: [serviceId], references: [id], onDelete: Cascade)
+  active    Boolean @default(true)
+  order     Int     @default(0)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([serviceId])
+}
+
+// ─── Pedidos ──────────────────────────────────────────────
+
+model Order {
+  id              String          @id @default(cuid())
+  status          OrderStatus     @default(PENDING)
+  atendimento     AtendimentoType
+  customerName    String
+  customerCpf     String?
+  customerPhone   String
+  address         String?
+  preferredTime   String?
+  observation     String?         @db.Text
+  gift            Boolean         @default(false)
+
+  subtotal        Decimal         @db.Decimal(10, 2)
+  discount        Decimal         @default(0) @db.Decimal(10, 2)
+  locationFee     Decimal         @default(0) @db.Decimal(10, 2)
+  total           Decimal         @db.Decimal(10, 2)
+
+  deviceModelId   String?
+  deviceModelName String?
+  brandName       String?
+
+  items           OrderItem[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([status])
+  @@index([customerPhone])
+  @@index([createdAt])
+}
+
+model OrderItem {
+  id            String   @id @default(cuid())
+  orderId       String
+  order         Order    @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  serviceId     String?
+  service       Service? @relation(fields: [serviceId], references: [id], onDelete: SetNull)
+  serviceName   String
+  variantName   String?
+  componentName String?
+  price         Decimal  @db.Decimal(10, 2)
+  installTime   String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([orderId])
+}

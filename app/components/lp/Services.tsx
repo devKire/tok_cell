@@ -10,8 +10,8 @@ import {
   ArrowRight,
 } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
-import { CardData, SwipeCards } from '../../components/ui/swipe-cards';
-import { CometCard } from '../../components/ui/comet-card';
+import { CardData, SwipeCards } from '../../../components/ui/swipe-cards';
+import { CometCard } from '../../../components/ui/comet-card';
 
 const services = [
   {

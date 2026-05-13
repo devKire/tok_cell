@@ -1,8 +1,8 @@
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import './globals.css';
-import WhatsAppButton from './components/WhatsAppButton';
-import Header from './components/Header';
+import { CartProvider } from './hooks/use-cart';
+import Header from './components/layout/Header';
 
 const inter = Inter({
   subsets: ['latin'],
@@ -35,9 +35,10 @@ export default function RootLayout({
   return (
     <html lang="pt-BR">
       <body className={inter.className}>
-        <Header />
-        <main className="min-h-screen">{children}</main>
-        <WhatsAppButton />
+        <CartProvider>
+          <Header />
+          <main className="min-h-screen">{children}</main>
+        </CartProvider>
       </body>
     </html>
   );

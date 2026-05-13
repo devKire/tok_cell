@@ -206,3 +206,248 @@ body {
     transform: translateZ(0);
   }
 }
+
+/* ═══════════════════════════════════════════════════════ */
+/* 🎨 ESTILOS DO PAINEL ADMIN - TEMA CLARO             */
+/* ═══════════════════════════════════════════════════════ */
+
+.admin-panel {
+  --admin-bg: 250 250 250;
+  --admin-card: 255 255 255;
+  --admin-border: 229 231 235;
+  --admin-text: 17 24 39;
+  --admin-text-muted: 107 114 128;
+  --admin-hover: 243 244 246;
+}
+
+/* Inputs e selects no admin */
+.admin-panel input[type='text'],
+.admin-panel input[type='number'],
+.admin-panel input[type='email'],
+.admin-panel input[type='tel'],
+.admin-panel input[type='url'],
+.admin-panel select,
+.admin-panel textarea {
+  @apply px-3 py-2 rounded-lg text-sm w-full
+         bg-white border border-gray-200 text-gray-900
+         placeholder:text-gray-400
+         focus:outline-none focus:ring-2 focus:ring-gray-200 focus:border-gray-300
+         transition-all;
+}
+
+.admin-panel input[type='checkbox'] {
+  @apply rounded border-gray-300 text-gray-900 focus:ring-gray-200;
+}
+
+.admin-panel input[type='range'] {
+  @apply w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-gray-900;
+}
+
+.admin-panel select {
+  @apply appearance-none pr-8;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%236B7280'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.5rem center;
+  background-size: 1rem;
+}
+
+/* Scrollbar no admin */
+.admin-panel ::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+.admin-panel ::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.admin-panel ::-webkit-scrollbar-thumb {
+  background: #d1d5db;
+  border-radius: 9999px;
+}
+
+.admin-panel ::-webkit-scrollbar-thumb:hover {
+  background: #9ca3af;
+}
+
+/* Botões do admin */
+.admin-btn {
+  @apply inline-flex items-center justify-center gap-2 px-4 py-2 rounded-lg text-sm font-medium
+         transition-all duration-200 
+         disabled:opacity-50 disabled:cursor-not-allowed
+         active:scale-[0.98];
+}
+
+.admin-btn-primary {
+  @apply bg-gray-900 text-white hover:bg-gray-800;
+}
+
+.admin-btn-secondary {
+  @apply bg-white border border-gray-200 text-gray-700 hover:bg-gray-50 hover:border-gray-300;
+}
+
+.admin-btn-ghost {
+  @apply text-gray-600 hover:bg-gray-100 hover:text-gray-900;
+}
+
+.admin-btn-danger {
+  @apply bg-red-600 text-white hover:bg-red-700;
+}
+
+.admin-btn-sm {
+  @apply px-3 py-1.5 text-xs;
+}
+
+/* Badges do admin */
+.admin-badge {
+  @apply inline-flex items-center px-2 py-0.5 rounded-md text-xs font-medium;
+}
+
+.admin-badge-success {
+  @apply bg-emerald-100 text-emerald-700;
+}
+
+.admin-badge-warning {
+  @apply bg-amber-100 text-amber-800;
+}
+
+.admin-badge-danger {
+  @apply bg-red-100 text-red-700;
+}
+
+.admin-badge-info {
+  @apply bg-blue-100 text-blue-800;
+}
+
+.admin-badge-purple {
+  @apply bg-purple-100 text-purple-800;
+}
+
+.admin-badge-gray {
+  @apply bg-gray-100 text-gray-600;
+}
+
+/* Cards do admin */
+.admin-card {
+  @apply bg-white border border-gray-200 rounded-xl;
+}
+
+/* Tabelas do admin */
+.admin-table {
+  @apply w-full text-sm;
+}
+
+.admin-table thead th {
+  @apply text-left px-4 py-3 text-xs font-bold uppercase tracking-wider text-gray-400;
+}
+
+.admin-table tbody td {
+  @apply px-4 py-3;
+}
+
+.admin-table tbody tr {
+  @apply hover:bg-gray-50 transition-colors border-b border-gray-100 last:border-0;
+}
+
+/* Animações para o admin */
+@keyframes adminFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes adminSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes adminSlideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.admin-animate-fade-in {
+  animation: adminFadeIn 0.2s ease-out;
+}
+
+.admin-animate-slide-up {
+  animation: adminSlideUp 0.3s ease-out;
+}
+
+.admin-animate-slide-down {
+  animation: adminSlideDown 0.3s ease-out;
+}
+
+/* Skeleton loading */
+.admin-skeleton {
+  @apply animate-pulse bg-gray-200 rounded;
+}
+
+/* Sidebar link ativo */
+.admin-sidebar-link-active {
+  @apply bg-gray-100 text-gray-900 font-medium;
+}
+
+/* Toast */
+.admin-toast {
+  @apply fixed bottom-4 right-4 z-50;
+  animation: adminSlideUp 0.3s ease-out;
+}
+
+/* Tooltip */
+.admin-tooltip {
+  @apply absolute z-50 px-2 py-1 text-xs font-medium text-white bg-gray-900 rounded-md
+         opacity-0 invisible group-hover:opacity-100 group-hover:visible
+         transition-all duration-150;
+}
+
+/* Linha de gradiente sutil para cabeçalhos */
+.admin-divider {
+  @apply h-px bg-gradient-to-r from-gray-200 via-gray-100 to-transparent;
+}
+
+/* Efeito hover em cards */
+.admin-card-hover {
+  @apply transition-all duration-200 hover:shadow-md hover:border-gray-300;
+}
+
+/* Previne seleção de texto em elementos interativos */
+.admin-no-select {
+  @apply select-none;
+}
+
+/* Estado de carregamento em botões */
+.admin-loading {
+  @apply relative text-transparent;
+}
+
+.admin-loading::after {
+  content: '';
+  @apply absolute inset-0 m-auto w-4 h-4 border-2 border-white/30 border-t-white rounded-full;
+  animation: spin 0.6s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ═══════════════════════════════════════════════════════ */
+/* 🔚 FIM DOS ESTILOS DO PAINEL ADMIN                   */
+/* ═══════════════════════════════════════════════════════ */
