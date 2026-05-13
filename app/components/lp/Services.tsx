@@ -8,6 +8,8 @@ import {
   Unlock,
   Wrench,
   ArrowRight,
+  Search,
+  Heart,
 } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
 import { CardData, SwipeCards } from '../../../components/ui/swipe-cards';
@@ -46,6 +48,13 @@ const services = [
     icon: Wrench,
     title: 'Manutenção Geral',
     description: 'Limpeza e reparos completos.',
+    color: 'from-red-500 to-red-600',
+    bgGlow: 'bg-red-500/20',
+  },
+  {
+    icon: Search,
+    title: 'Outros Serviços',
+    description: 'Consulte-nos para outras necessidades.',
     color: 'from-red-500 to-red-600',
     bgGlow: 'bg-red-500/20',
   },
@@ -151,6 +160,22 @@ export default function Services() {
               Todos os serviços foram visualizados!
             </motion.p>
           )}
+
+          {/* CTA */}
+          <motion.a
+            href="/services"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex w-fit mx-auto items-center space-x-2 bg-red-600 text-white px-6 py-3 rounded-full font-semibold mt-8 hover:bg-red-700 transition-colors shadow-lg shadow-red-600/25"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            <Wrench className="w-5 h-5" />
+            <span>
+              Fazer Orçamento
+              <span className="text-green-500"> Gratuito</span>{' '}
+            </span>
+          </motion.a>
         </motion.div>
 
         {/* Desktop */}
@@ -173,7 +198,7 @@ export default function Services() {
                 glareOpacity={0.06}
               >
                 <a
-                  href="https://wa.me/5547997513609"
+                  href="/servicos"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="group relative flex h-full flex-col overflow-hidden rounded-3xl border border-white/10 bg-white/[0.03] p-6 backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 hover:border-red-500/30 hover:bg-white/[0.05]"
@@ -206,11 +231,23 @@ export default function Services() {
                     </div>
 
                     {/* CTA */}
-                    <div className="mt-6 flex items-center gap-2 text-sm font-medium text-red-400 transition-all duration-300 group-hover:gap-3 group-hover:text-red-300">
-                      <span>Saiba mais</span>
+                    <motion.a
+                      href="/servicos"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex w-fit mx-auto items-center gap-2 bg-green-500 text-white px-7 py-3 rounded-full font-bold mt-8 hover:bg-green-600 transition-all shadow-xl shadow-green-500/30 border border-green-400"
+                      whileHover={{ scale: 1.06 }}
+                      whileTap={{ scale: 0.96 }}
+                    >
+                      <Heart className="w-5 h-5 fill-white" />
 
-                      <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
-                    </div>
+                      <span className="flex items-center gap-2">
+                        Fazer Orçamento
+                        <span className="bg-white text-green-600 text-xs font-extrabold px-2 py-1 rounded-full uppercase tracking-wide shadow-sm">
+                          GRATUITO
+                        </span>
+                      </span>
+                    </motion.a>
                   </div>
                 </a>
               </CometCard>

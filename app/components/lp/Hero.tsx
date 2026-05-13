@@ -1,8 +1,9 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { ArrowDown, Clock, Smartphone, Zap } from 'lucide-react';
+import { ArrowDown, Clock, Zap } from 'lucide-react';
 import Image from 'next/image';
+import Link from 'next/link';
 import { useState } from 'react';
 
 // Gerar partículas FORA do componente (executa apenas uma vez no módulo)
@@ -142,23 +143,19 @@ export default function Hero() {
           transition={{ duration: 0.6, delay: 0.7 }}
           className="flex flex-col sm:flex-row gap-4 justify-center items-center"
         >
-          <a
-            href="https://wa.me/5547997513609"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="group relative w-full sm:w-auto"
-          >
+          {/* Botão Fazer Orçamento - direciona para /servicos */}
+          <Link href="/servicos">
             <motion.div
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="bg-red-600 text-white px-8 py-4 rounded-full font-semibold text-lg flex items-center justify-center space-x-2 hover:bg-red-700 transition-colors glow-red"
+              className="bg-red-600 text-white px-8 py-4 rounded-full font-semibold text-lg flex items-center justify-center space-x-2 hover:bg-red-700 transition-colors glow-red cursor-pointer"
             >
-              <Smartphone className="w-5 h-5" />
-              <span>Chamar no WhatsApp</span>
+              <span>💰 Fazer Orçamento Agora</span>
               <Zap className="w-4 h-4 ml-2 animate-pulse" />
             </motion.div>
-          </a>
+          </Link>
 
+          {/* Botão Ver Serviços - scroll suave */}
           <motion.button
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
