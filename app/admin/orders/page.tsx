@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 // app/admin/orders/page.tsx - Pedidos (atualizado)
 import { adminGetOrders } from '@/app/actions/admin';
 import { formatDistanceToNow } from 'date-fns';
@@ -58,7 +59,7 @@ export default async function AdminOrdersPage() {
                 </td>
               </tr>
             )}
-            {orders.map((order) => (
+            {orders.map((order: any) => (
               <tr key={order.id} className="hover:bg-gray-50 transition-colors">
                 <td className="px-4 py-3">
                   <div className="font-medium">{order.customerName}</div>
