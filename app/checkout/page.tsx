@@ -80,14 +80,14 @@ export default function CheckoutPage() {
   }
 
   return (
-    <div className="max-w-2xl mx-auto px-6 py-10">
+    <div className="max-w-2xl mx-auto px-6 py-10 mt-20">
       <SectionTitle
         title="Finalizar Pedido"
         subtitle="Preencha seus dados e receba a confirmação pelo WhatsApp"
       />
 
       <div className="bg-gray-50 border border-gray-200 rounded-xl p-5 mb-6">
-        <p className="text-xs font-bold uppercase tracking-wider text-gray-400 mb-3">
+        <p className="text-xs font-bold uppercase tracking-wider text-black mb-3 text-[15px]">
           Tipo de atendimento
         </p>
         <div className="grid grid-cols-2 gap-3">
@@ -97,10 +97,10 @@ export default function CheckoutPage() {
               onClick={() => setAtend(opt)}
               className={`border-2 rounded-xl p-4 text-left transition-all ${atend === opt ? 'border-black bg-white' : 'border-gray-200 bg-white'}`}
             >
-              <div className="text-xl mb-1.5">
+              <div className="text-xl  mb-1.5">
                 {opt === 'LOJA' ? '🏪' : '🏠'}
               </div>
-              <div className="font-bold text-sm">
+              <div className="font-bold text-black text-sm">
                 {opt === 'LOJA' ? 'Na Loja' : 'No Local'}
               </div>
               <div className="text-xs text-gray-500 mt-0.5">
@@ -179,7 +179,7 @@ export default function CheckoutPage() {
               <select
                 value={time}
                 onChange={(e) => setTime(e.target.value)}
-                className="w-full border border-gray-200 rounded-lg px-4 py-2.5 text-sm outline-none focus:border-black bg-white transition-colors"
+                className="w-full border text-black border-gray-200 rounded-lg px-4 py-2.5 text-sm outline-none focus:border-black bg-white transition-colors"
               >
                 <option value="">Selecione um horário</option>
                 <option>Manhã (9h às 12h)</option>
@@ -247,7 +247,7 @@ export default function CheckoutPage() {
               <span>+{fmtBRL(locationFee)}</span>
             </div>
           )}
-          <div className="flex justify-between font-bold text-base pt-2 border-t border-gray-200 mt-1">
+          <div className="flex justify-between font-bold text-base pt-2 border-t text-black border-gray-200 mt-1">
             <span>Total</span>
             <span>{fmtBRL(finalTotal)}</span>
           </div>

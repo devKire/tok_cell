@@ -18,17 +18,47 @@ export function BrandCard({ brand }: { brand: Brand }) {
 
   return (
     <Link
-      href={`/servicos/${brand.slug}`} // Isso deve funcionar se brand.slug existir
-      className="border border-gray-200 rounded-xl p-5 flex flex-col items-center gap-3 hover:border-gray-400 hover:shadow-sm transition-all group text-center bg-white"
+      href={`/servicos/${brand.slug}`}
+      className="relative bg-white/80 backdrop-blur-sm border border-gray-100 rounded-2xl p-6 flex flex-col items-center gap-4 hover:bg-white hover:shadow-2xl hover:scale-105 transition-all duration-300 text-center group cursor-pointer"
     >
+      {/* Efeito de brilho */}
+      <div className="absolute -inset-0.5 bg-gradient-to-r from-orange-300 to-orange-600 rounded-2xl opacity-0 group-hover:opacity-50 blur transition duration-300" />
+
+      {/* Ícone com animação pulsante */}
       <div
-        className={`w-12 h-12 rounded-xl flex items-center justify-center bg-gray-50 ${isText ? 'text-sm font-black text-orange-500' : 'text-2xl'}`}
+        className={`relative w-16 h-16 rounded-2xl flex items-center justify-center transition-all duration-300 group-hover:animate-pulse ${
+          isText
+            ? 'bg-gradient-to-br from-orange-500 to-orange-600 text-white shadow-lg text-xl font-black'
+            : 'bg-gradient-to-br from-gray-100 to-gray-200 text-gray-700 text-3xl group-hover:from-orange-500 group-hover:to-orange-600 group-hover:text-white'
+        }`}
       >
         {icon}
       </div>
-      <span className="text-sm font-semibold group-hover:text-gray-900">
-        {brand.name}
-      </span>
+
+      {/* Nome com underline animado */}
+      <div className="relative">
+        <span className="relative text-base font-semibold text-gray-800 group-hover:text-orange-600 transition-colors duration-300">
+          {brand.name}
+        </span>
+        <div className="absolute -bottom-1 left-0 w-0 h-0.5 bg-orange-500 group-hover:w-full transition-all duration-300" />
+      </div>
+
+      {/* Setinha indicadora */}
+      <div className="absolute bottom-3 right-3 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-x-2 group-hover:translate-x-0">
+        <svg
+          className="w-4 h-4 text-orange-500"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M9 5l7 7-7 7"
+          />
+        </svg>
+      </div>
     </Link>
   );
 }

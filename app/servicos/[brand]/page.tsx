@@ -34,7 +34,7 @@ export default async function BrandPage({ params }: Props) {
   const brandName = lines[0]?.brand?.name ?? brand;
 
   return (
-    <div className="max-w-3xl mx-auto px-6 py-10">
+    <div className="max-w-3xl mx-auto px-6 py-10 mt-20">
       <Breadcrumb
         items={[{ label: 'Marcas', href: '/servicos' }, { label: brandName }]}
       />
@@ -46,7 +46,7 @@ export default async function BrandPage({ params }: Props) {
       <div className="space-y-8">
         {lines.map((line) => (
           <div key={line.id}>
-            <h3 className="text-sm font-bold text-gray-900 mb-3 pb-2 border-b border-gray-100">
+            <h3 className="text-sm font-bold text-white mb-3 pb-2 border-b border-gray-100">
               {line.name}
             </h3>
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2">
@@ -54,10 +54,17 @@ export default async function BrandPage({ params }: Props) {
                 <Link
                   key={model.id}
                   href={`/servicos/${brand}/${line.slug}/${model.slug}`}
-                  className="border border-gray-200 rounded-lg px-4 py-3 text-sm font-medium
-                           hover:border-gray-900 hover:bg-gray-50 transition-all
-                           flex items-center gap-2"
+                  className="relative group bg-white/30 backdrop-blur-sm rounded-lg px-4 py-3 text-sm font-medium
+                     hover:bg-white/70 hover:shadow-sm
+                     transition-all duration-300 flex items-center gap-2
+                     border border-transparent hover:border-gray-200"
                 >
+                  {/* Efeito glassmorphism base */}
+                  <div className="absolute inset-0 rounded-lg bg-gradient-to-br from-white/40 to-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+
+                  {/* Borda sutil no hover */}
+                  <div className="absolute inset-0 rounded-lg ring-1 ring-inset ring-white/50 group-hover:ring-gray-200 transition-all duration-300" />
+
                   {model.imageUrl ? (
                     <Image
                       src={model.imageUrl}
@@ -69,7 +76,9 @@ export default async function BrandPage({ params }: Props) {
                   ) : (
                     <span className="text-lg">📱</span>
                   )}
-                  {model.name}
+                  <span className="text-white group-hover:text-gray-900 transition-colors">
+                    {model.name}
+                  </span>
                 </Link>
               ))}
             </div>

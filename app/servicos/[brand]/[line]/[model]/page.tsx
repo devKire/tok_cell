@@ -44,7 +44,7 @@ export default async function ModelServicesPage({ params }: Props) {
   const lineData = data.line;
 
   return (
-    <div className="max-w-3xl mx-auto px-6 py-10">
+    <div className="max-w-3xl mx-auto px-6 py-10 mt-20">
       <Breadcrumb
         items={[
           { label: 'Marcas', href: '/servicos' },

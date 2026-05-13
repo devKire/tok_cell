@@ -14,7 +14,7 @@ export default async function ServicosPage() {
   const brands = await getBrands();
 
   return (
-    <div className="max-w-3xl mx-auto px-6 py-10">
+    <div className="max-w-3xl mx-auto px-6 py-10 mt-20">
       <SectionTitle
         title="Qual a marca do seu celular?"
         subtitle="Selecione para ver modelos e serviços disponíveis"

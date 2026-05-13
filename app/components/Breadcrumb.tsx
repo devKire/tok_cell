@@ -16,12 +16,12 @@ export function Breadcrumb({ items }: { items: Item[] }) {
           {item.href ? (
             <Link
               href={item.href}
-              className="hover:text-black transition-colors"
+              className="hover:text-gray-400 transition-colors "
             >
               {item.label}
             </Link>
           ) : (
-            <span className="text-black font-semibold">{item.label}</span>
+            <span className="text-white font-semibold">{item.label}</span>
           )}
         </span>
       ))}

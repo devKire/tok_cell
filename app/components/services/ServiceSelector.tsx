@@ -1,9 +1,7 @@
-//app\components\services\ServiceSelector.tsx
-
 'use client';
 
 import { useState } from 'react';
-import { Plus, Clock, Store, MapPin } from 'lucide-react';
+import { Plus, Clock, Store, MapPin, ShoppingCart } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import {
   Select,
@@ -23,6 +21,7 @@ import {
 import { toast } from 'sonner';
 import { Service } from '@/app/types';
 import { useCart } from '@/app/hooks/use-cart';
+import CartDrawer from '../cart/CartDrawer';
 
 type Props = {
   services: Service[];
@@ -103,6 +102,7 @@ function ServiceCard({
       toast.error('Erro ao adicionar serviço');
     }
   }
+
   return (
     <div className="border border-gray-200 rounded-xl overflow-hidden bg-white">
       <div className="flex items-start gap-4 p-5">
@@ -112,7 +112,9 @@ function ServiceCard({
               {service.promotionBadge}
             </span>
           )}
-          <h3 className="font-bold text-[15px] mb-1">{service.name}</h3>
+          <h3 className="font-bold text-[20px] text-black mb-1">
+            {service.name}
+          </h3>
           <p className="text-sm text-gray-500 leading-relaxed mb-3">
             {service.description}
           </p>
@@ -123,7 +125,7 @@ function ServiceCard({
             <AtendimentoBadge atend={service.atendimento} />
           </div>
         </div>
-        <div className="text-right shrink-0">
+        <div className="text-right shrink-0 text-green-500">
           {service.originalPrice && (
             <p className="text-xs text-gray-400 line-through">
               {fmtBRL(Number(service.originalPrice))}
@@ -175,7 +177,7 @@ function ServiceCard({
               setSelectedVariant(v);
             }}
           >
-            <SelectTrigger className="h-8 text-xs w-[180px] bg-white">
+            <SelectTrigger className="h-8 text-xs text-black w-[180px] bg-white">
               <SelectValue />
             </SelectTrigger>
             <SelectContent>
@@ -196,7 +198,7 @@ function ServiceCard({
               setSelectedComponent(c);
             }}
           >
-            <SelectTrigger className="h-8 text-xs w-[200px] bg-white">
+            <SelectTrigger className="h-8 text-xs text-black w-[200px] bg-white">
               <SelectValue />
             </SelectTrigger>
             <SelectContent>
@@ -222,6 +224,37 @@ function ServiceCard({
   );
 }
 
+// Componente do botão flutuante do carrinho
+function FloatingCartButton() {
+  const { itemCount } = useCart();
+
+  if (itemCount === 0) return null;
+
+  return (
+    <div className="fixed bottom-6 left-0 right-0 z-50 flex justify-center pointer-events-none">
+      <div className="pointer-events-auto animate-in slide-in-from-bottom-4 duration-300">
+        <CartDrawer>
+          <Button
+            className="relative bg-black hover:bg-gray-900 text-white rounded-full px-6 py-3 shadow-lg hover:shadow-xl transition-all duration-300 group"
+            aria-label={`Carrinho com ${itemCount} itens`}
+          >
+            <ShoppingCart className="h-5 w-5 mr-2" />
+            <span className="font-semibold">Ver Carrinho</span>
+            <span className="ml-2 bg-white/20 rounded-full px-2 py-0.5 text-sm">
+              {itemCount} {itemCount === 1 ? 'item' : 'itens'}
+            </span>
+            {itemCount > 0 && (
+              <span className="absolute -top-2 -right-2 bg-green-500 text-white text-xs font-bold w-6 h-6 rounded-full flex items-center justify-center animate-pulse">
+                {itemCount}
+              </span>
+            )}
+          </Button>
+        </CartDrawer>
+      </div>
+    </div>
+  );
+}
+
 export default function ServiceSelector({
   services,
   modelName,
@@ -230,17 +263,20 @@ export default function ServiceSelector({
   lineSlug,
 }: Props) {
   return (
-    <div className="space-y-3">
-      {services.map((service) => (
-        <ServiceCard
-          key={service.id}
-          service={service}
-          modelName={modelName}
-          brandName={brandName}
-          brandSlug={brandSlug}
-          lineSlug={lineSlug}
-        />
-      ))}
-    </div>
+    <>
+      <div className="space-y-3 pb-20">
+        {services.map((service) => (
+          <ServiceCard
+            key={service.id}
+            service={service}
+            modelName={modelName}
+            brandName={brandName}
+            brandSlug={brandSlug}
+            lineSlug={lineSlug}
+          />
+        ))}
+      </div>
+      <FloatingCartButton />
+    </>
   );
 }

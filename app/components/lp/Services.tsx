@@ -163,17 +163,20 @@ export default function Services() {
 
           {/* CTA */}
           <motion.a
-            href="/services"
+            href="/servicos"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex w-fit mx-auto items-center space-x-2 bg-red-600 text-white px-6 py-3 rounded-full font-semibold mt-8 hover:bg-red-700 transition-colors shadow-lg shadow-red-600/25"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
+            className="flex w-fit mx-auto items-center gap-2 bg-green-500 text-white px-7 py-3 rounded-full font-bold mt-8 hover:bg-green-600 transition-all shadow-xl shadow-green-500/30 border border-green-400"
+            whileHover={{ scale: 1.06 }}
+            whileTap={{ scale: 0.96 }}
           >
-            <Wrench className="w-5 h-5" />
-            <span>
+            <Heart className="w-5 h-5 fill-white" />
+
+            <span className="flex items-center gap-2">
               Fazer Orçamento
-              <span className="text-green-500"> Gratuito</span>{' '}
+              <span className="bg-white text-green-600 text-xs font-extrabold px-2 py-1 rounded-full uppercase tracking-wide shadow-sm">
+                GRATUITO
+              </span>
             </span>
           </motion.a>
         </motion.div>
@@ -231,23 +234,14 @@ export default function Services() {
                     </div>
 
                     {/* CTA */}
-                    <motion.a
-                      href="/servicos"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex w-fit mx-auto items-center gap-2 bg-green-500 text-white px-7 py-3 rounded-full font-bold mt-8 hover:bg-green-600 transition-all shadow-xl shadow-green-500/30 border border-green-400"
-                      whileHover={{ scale: 1.06 }}
-                      whileTap={{ scale: 0.96 }}
-                    >
-                      <Heart className="w-5 h-5 fill-white" />
-
-                      <span className="flex items-center gap-2">
-                        Fazer Orçamento
-                        <span className="bg-white text-green-600 text-xs font-extrabold px-2 py-1 rounded-full uppercase tracking-wide shadow-sm">
-                          GRATUITO
-                        </span>
+                    <div className="mt-6 flex items-center gap-2 text-sm font-medium text-red-400 transition-all duration-300 group-hover:gap-3 group-hover:text-red-300">
+                      <span>
+                        Clique para fazer Orçamento
+                        <span className="text-green-500"> Gratuito</span>{' '}
                       </span>
-                    </motion.a>
+
+                      <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
+                    </div>
                   </div>
                 </a>
               </CometCard>
