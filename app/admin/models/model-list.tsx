@@ -4,7 +4,7 @@
 
 import { useState } from 'react';
 import { adminUpdateModel, adminDeleteModel } from '@/app/actions/admin';
-import { Pencil, Trash2, X, Check } from 'lucide-react';
+import { Pencil, Trash2, X, Check, ImageIcon } from 'lucide-react';
 import Image from 'next/image';
 
 export function ModelList({ models }: { models: any[] }) {
@@ -53,6 +53,9 @@ export function ModelList({ models }: { models: any[] }) {
               Marca
             </th>
             <th className="text-left px-4 py-3 text-xs font-bold uppercase tracking-wider text-gray-400">
+              Imagem
+            </th>
+            <th className="text-left px-4 py-3 text-xs font-bold uppercase tracking-wider text-gray-400">
               Serviços
             </th>
             <th className="text-left px-4 py-3 text-xs font-bold uppercase tracking-wider text-gray-400">
@@ -76,12 +79,41 @@ export function ModelList({ models }: { models: any[] }) {
                       type="text"
                       value={editName}
                       onChange={(e) => setEditName(e.target.value)}
-                      className="px-2 py-1 border text-gray-400 border-gray-200 rounded text-sm w-full"
+                      className="px-2 py-1 border text-gray-700 border-gray-300 rounded text-sm w-full focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent"
+                      placeholder="Nome do modelo"
                     />
                   </td>
                   <td className="px-4 py-3 text-gray-500">{model.line.name}</td>
                   <td className="px-4 py-3 text-gray-500">
                     {model.line.brand.name}
+                  </td>
+                  <td className="px-4 py-3">
+                    <div className="flex items-center gap-2">
+                      <input
+                        type="url"
+                        value={editImageUrl}
+                        onChange={(e) => setEditImageUrl(e.target.value)}
+                        className="px-2 py-1 border text-gray-700 border-gray-300 rounded text-sm w-full focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent"
+                        placeholder="URL da imagem (opcional)"
+                      />
+                      {editImageUrl && (
+                        <div className="relative w-8 h-8 flex-shrink-0">
+                          <Image
+                            src={editImageUrl}
+                            alt="Preview"
+                            width={32}
+                            height={32}
+                            className="w-8 h-8 rounded object-cover border border-gray-200"
+                            onError={(e) => {
+                              // Se a imagem não carregar, mostra placeholder
+                              const target = e.target as HTMLImageElement;
+                              target.style.display = 'none';
+                              target.parentElement!.innerHTML = `<div class="w-8 h-8 rounded bg-gray-100 border border-gray-200 flex items-center justify-center"><svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg></div>`;
+                            }}
+                          />
+                        </div>
+                      )}
+                    </div>
                   </td>
                   <td className="px-4 py-3 text-gray-500">
                     {model._count.services}
@@ -91,16 +123,16 @@ export function ModelList({ models }: { models: any[] }) {
                       type="number"
                       value={editOrder}
                       onChange={(e) => setEditOrder(Number(e.target.value))}
-                      className="px-2 py-1 border text-gray-400 border-gray-200 rounded text-sm w-20"
+                      className="px-2 py-1 border text-gray-700 border-gray-300 rounded text-sm w-20 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent"
                     />
                   </td>
                   <td className="px-4 py-3">
                     <button
                       onClick={() => setEditActive(!editActive)}
-                      className={`px-2 py-0.5 rounded text-xs font-medium ${
+                      className={`px-2 py-0.5 rounded text-xs font-medium transition-colors ${
                         editActive
-                          ? 'bg-green-100 text-green-700'
-                          : 'bg-red-100 text-red-700'
+                          ? 'bg-green-100 text-green-700 hover:bg-green-200'
+                          : 'bg-red-100 text-red-700 hover:bg-red-200'
                       }`}
                     >
                       {editActive ? 'Sim' : 'Não'}
@@ -110,13 +142,15 @@ export function ModelList({ models }: { models: any[] }) {
                     <div className="flex items-center gap-2">
                       <button
                         onClick={() => saveEdit(model.id)}
-                        className="text-green-600 hover:text-green-700"
+                        className="p-1 rounded hover:bg-green-50 text-green-600 hover:text-green-700 transition-colors"
+                        title="Salvar"
                       >
                         <Check className="h-4 w-4" />
                       </button>
                       <button
                         onClick={() => setEditingId(null)}
-                        className="text-gray-400 hover:text-gray-600"
+                        className="p-1 rounded hover:bg-gray-100 text-gray-400 hover:text-gray-600 transition-colors"
+                        title="Cancelar"
                       >
                         <X className="h-4 w-4" />
                       </button>
@@ -127,16 +161,20 @@ export function ModelList({ models }: { models: any[] }) {
                 <>
                   <td className="px-4 py-3">
                     <div className="flex items-center gap-2">
-                      {model.imageUrl && (
+                      {model.imageUrl ? (
                         <Image
                           src={model.imageUrl}
                           alt={model.name}
                           width={24}
                           height={24}
-                          className="w-6 h-6 rounded object-cover"
+                          className="w-6 h-6 rounded object-cover border border-gray-200"
                         />
+                      ) : (
+                        <div className="w-6 h-6 rounded bg-gray-100 border border-gray-200 flex items-center justify-center">
+                          <ImageIcon className="w-3 h-3 text-gray-400" />
+                        </div>
                       )}
-                      <span className="font-medium text-gray-400">
+                      <span className="font-medium text-gray-700">
                         {model.name}
                       </span>
                     </div>
@@ -144,6 +182,15 @@ export function ModelList({ models }: { models: any[] }) {
                   <td className="px-4 py-3 text-gray-500">{model.line.name}</td>
                   <td className="px-4 py-3 text-gray-500">
                     {model.line.brand.name}
+                  </td>
+                  <td className="px-4 py-3">
+                    {model.imageUrl ? (
+                      <span className="text-xs text-green-600 font-medium">
+                        ✓ Configurada
+                      </span>
+                    ) : (
+                      <span className="text-xs text-gray-400">-</span>
+                    )}
                   </td>
                   <td className="px-4 py-3 text-gray-500">
                     {model._count.services}
@@ -164,13 +211,15 @@ export function ModelList({ models }: { models: any[] }) {
                     <div className="flex items-center gap-2">
                       <button
                         onClick={() => startEdit(model)}
-                        className="text-blue-600 hover:text-blue-700"
+                        className="p-1 rounded hover:bg-blue-50 text-blue-600 hover:text-blue-700 transition-colors"
+                        title="Editar"
                       >
                         <Pencil className="h-4 w-4" />
                       </button>
                       <button
                         onClick={() => handleDelete(model.id)}
-                        className="text-red-600 hover:text-red-700"
+                        className="p-1 rounded hover:bg-red-50 text-red-600 hover:text-red-700 transition-colors"
+                        title="Excluir"
                       >
                         <Trash2 className="h-4 w-4" />
                       </button>

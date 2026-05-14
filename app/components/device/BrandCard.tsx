@@ -1,64 +1,97 @@
 // app/components/device/BrandCard.tsx
 import { Brand } from '@/app/types';
+import Image from 'next/image';
 import Link from 'next/link';
 
-const BRAND_ICONS: Record<string, string> = {
-  apple: '🍎',
-  samsung: '🌀',
-  motorola: '〽️',
-  xiaomi: 'MI',
+const BRAND_LOGOS: Record<string, string> = {
+  apple:
+    'https://cdn.brandfetch.io/idnrCPuv87/theme/dark/logo.svg?c=1dxbfHSJFAPEGdCLU4o5B',
+  samsung:
+    'https://cdn.brandfetch.io/iduaw_nOnR/theme/dark/idkTmfps1i.svg?c=1dxbfHSJFAPEGdCLU4o5B',
+  motorola:
+    'https://cdn.brandfetch.io/idei-0N6bA/theme/dark/logo.svg?c=1dxbfHSJFAPEGdCLU4o5B',
+  xiaomi:
+    'https://cdn.brandfetch.io/id3IaEYtG_/theme/dark/logo.svg?c=1dxbfHSJFAPEGdCLU4o5B',
+  asus: 'https://cdn.brandfetch.io/idGnlhbTXH/theme/dark/logo.svg?c=1dxbfHSJFAPEGdCLU4o5B',
+  oneplus:
+    'https://cdn.brandfetch.io/idi46coDvW/theme/dark/symbol.svg?c=1dxbfHSJFAPEGdCLU4o5B',
+  google:
+    'https://cdn.brandfetch.io/id6O2oGzv-/theme/dark/symbol.svg?c=1dxbfHSJFAPEGdCLU4o5B',
+  huawei:
+    'https://cdn.brandfetch.io/idLAJ42baU/theme/dark/idKq57-iaT.svg?c=1dxbfHSJFAPEGdCLU4o5B',
+  oppo: 'https://cdn.brandfetch.io/id64aeE2b-/theme/dark/idF9iGuWuM.svg?c=1dxbfHSJFAPEGdCLU4o5B',
+  realme:
+    'https://cdn.brandfetch.io/idYXSDVD9U/theme/dark/logo.svg?c=1dxbfHSJFAPEGdCLU4o5B',
+  zte: 'https://cdn.brandfetch.io/idhNwH_cCA/theme/dark/logo.svg?c=1dxbfHSJFAPEGdCLU4o5B',
 };
 
 export function BrandCard({ brand }: { brand: Brand }) {
-  const icon = BRAND_ICONS[brand.slug] ?? '📱';
-  const isText = icon === 'MI';
-
-  // DEBUG: Verifique se o slug está vindo corretamente
-  console.log('BrandCard brand:', brand);
+  const logoSrc = BRAND_LOGOS[brand.slug] ?? '/images/brands/default.svg';
 
   return (
     <Link
       href={`/servicos/${brand.slug}`}
-      className="relative bg-white/80 backdrop-blur-sm border border-gray-100 rounded-2xl p-6 flex flex-col items-center gap-4 hover:bg-white hover:shadow-2xl hover:scale-105 transition-all duration-300 text-center group cursor-pointer"
+      className={[
+        // Base surface — mesmo padrão do ModelCard
+        'group relative flex flex-col items-center gap-4 rounded-2xl p-5',
+        'bg-white/[0.06] border border-white/[0.08]',
+        // Hover
+        'hover:bg-white/[0.10] hover:border-white/[0.18]',
+        'hover:-translate-y-0.5 hover:shadow-lg hover:shadow-black/30',
+        // Transição única e coerente
+        'transition-all duration-200 ease-out',
+        'cursor-pointer select-none',
+      ].join(' ')}
     >
-      {/* Efeito de brilho */}
-      <div className="absolute -inset-0.5 bg-gradient-to-r from-orange-300 to-orange-600 rounded-2xl opacity-0 group-hover:opacity-50 blur transition duration-300" />
-
-      {/* Ícone com animação pulsante */}
+      {/* ── Logo container ── */}
       <div
-        className={`relative w-16 h-16 rounded-2xl flex items-center justify-center transition-all duration-300 group-hover:animate-pulse ${
-          isText
-            ? 'bg-gradient-to-br from-orange-500 to-orange-600 text-white shadow-lg text-xl font-black'
-            : 'bg-gradient-to-br from-gray-100 to-gray-200 text-gray-700 text-3xl group-hover:from-orange-500 group-hover:to-orange-600 group-hover:text-white'
-        }`}
+        className={[
+          'relative flex items-center justify-center',
+          'w-20 h-20 rounded-xl',
+          // Mesma superfície fosca do ModelCard
+          'bg-gradient-to-b from-white/[0.08] to-white/[0.03]',
+          'border border-white/[0.07]',
+          'shadow-sm shadow-black/20',
+          'group-hover:shadow-md group-hover:shadow-black/30',
+          'transition-shadow duration-200',
+        ].join(' ')}
       >
-        {icon}
+        <Image
+          src={logoSrc}
+          alt={brand.name}
+          width={48}
+          height={48}
+          className={[
+            'w-12 h-12 object-contain',
+            // SVGs brancos ficam ótimos com opacity — sem inversão abrupta
+            'opacity-70 group-hover:opacity-100',
+            // Leve lift, sem scale dramático
+            'group-hover:scale-105 group-hover:-translate-y-0.5',
+            'transition-all duration-200 ease-out',
+          ].join(' ')}
+        />
       </div>
 
-      {/* Nome com underline animado */}
-      <div className="relative">
-        <span className="relative text-base font-semibold text-gray-800 group-hover:text-orange-600 transition-colors duration-300">
-          {brand.name}
-        </span>
-        <div className="absolute -bottom-1 left-0 w-0 h-0.5 bg-orange-500 group-hover:w-full transition-all duration-300" />
-      </div>
+      {/* ── Brand name ── */}
+      <span
+        className={[
+          'text-[13px] font-medium leading-snug text-center',
+          'text-white/70 group-hover:text-white/95',
+          'transition-colors duration-200',
+        ].join(' ')}
+      >
+        {brand.name}
+      </span>
 
-      {/* Setinha indicadora */}
-      <div className="absolute bottom-3 right-3 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-x-2 group-hover:translate-x-0">
-        <svg
-          className="w-4 h-4 text-orange-500"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={2}
-            d="M9 5l7 7-7 7"
-          />
-        </svg>
-      </div>
+      {/* ── Focus-visible ring (acessibilidade) ── */}
+      <span
+        className={[
+          'absolute inset-0 rounded-2xl ring-2 ring-orange-400/0',
+          'group-focus-visible:ring-orange-400/70',
+          'transition-all duration-150',
+        ].join(' ')}
+        aria-hidden="true"
+      />
     </Link>
   );
 }
