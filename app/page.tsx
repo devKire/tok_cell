@@ -11,10 +11,12 @@ import SectionDivider from './components/lp/SectionDivider';
 import Services from './components/lp/Services';
 import SocialProof from './components/lp/SocialProof';
 import WhatsAppButton from './components/lp/WhatsAppButton';
+import Header from './components/layout/Header';
 
 export default function Home() {
   return (
     <>
+      <Header />
       <WhatsAppButton />
       {/* ATENÇÃO - Capturar a atenção do visitante */}
       <Hero />

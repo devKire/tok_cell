@@ -6,6 +6,7 @@ import { useCart } from '@/app/hooks/use-cart';
 import { openWhatsApp } from '@/app/lib/whatsapp';
 import { toast } from 'sonner';
 import SectionTitle from '../components/SectionTitle';
+import Header from '../components/layout/Header';
 
 function fmtBRL(v: number) {
   return new Intl.NumberFormat('pt-BR', {
@@ -81,6 +82,7 @@ export default function CheckoutPage() {
 
   return (
     <div className="max-w-2xl mx-auto px-6 py-10 mt-20">
+      <Header />
       <SectionTitle
         title="Finalizar Pedido"
         subtitle="Preencha seus dados e receba a confirmação pelo WhatsApp"

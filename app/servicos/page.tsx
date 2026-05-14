@@ -3,6 +3,7 @@ import { getBrands } from '@/app/actions';
 import type { Metadata } from 'next';
 import SectionTitle from '../components/SectionTitle';
 import { BrandCard } from '../components/device/BrandCard';
+import Header from '../components/layout/Header';
 
 export const metadata: Metadata = {
   title: 'Serviços',
@@ -15,6 +16,7 @@ export default async function ServicosPage() {
 
   return (
     <div className="max-w-3xl mx-auto px-6 py-10 mt-20">
+      <Header />
       <SectionTitle
         title="Qual a marca do seu celular?"
         subtitle="Selecione para ver modelos e serviços disponíveis"

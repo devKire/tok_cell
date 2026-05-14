@@ -6,6 +6,7 @@ import type { Metadata } from 'next';
 import { Breadcrumb } from '@/app/components/Breadcrumb';
 import SectionTitle from '@/app/components/SectionTitle';
 import ServiceSelector from '@/app/components/services/ServiceSelector';
+import Header from '@/app/components/layout/Header';
 
 type Props = {
   params: Promise<{
@@ -45,6 +46,7 @@ export default async function ModelServicesPage({ params }: Props) {
 
   return (
     <div className="max-w-3xl mx-auto px-6 py-10 mt-20">
+      <Header />
       <Breadcrumb
         items={[
           { label: 'Marcas', href: '/servicos' },
