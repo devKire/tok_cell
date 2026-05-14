@@ -1,7 +1,10 @@
+// app/admin/login/page.tsx
 'use client';
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import Image from 'next/image';
+import { Button } from '@/components/ui/button';
 
 export default function AdminLoginPage() {
   const router = useRouter();
@@ -33,37 +36,55 @@ export default function AdminLoginPage() {
   return (
     <div className="min-h-screen bg-gray-50 flex items-center justify-center px-4">
       <div className="w-full max-w-sm">
+        {/* Logo e Identidade Visual */}
         <div className="text-center mb-8">
-          <p className="text-xl font-bold">Jc &amp; Santana</p>
-          <p className="text-sm text-gray-400 mt-1">Painel administrativo</p>
+          <div className="flex justify-center mb-6">
+            <Image
+              src="/logo.png"
+              alt="Jc & Santana Logo"
+              width={80}
+              height={80}
+              className="rounded-full ring-2 ring-gray-200 shadow-sm"
+              priority
+            />
+          </div>
+
+          <h1 className="text-2xl font-bold text-gray-900">Jc & Santana</h1>
+          <p className="text-sm text-gray-500 mt-1">Painel Administrativo</p>
         </div>
 
+        {/* Formulário de Login */}
         <form
           onSubmit={handleLogin}
-          className="bg-white border border-gray-200 rounded-2xl p-8 space-y-4"
+          className="bg-white border border-gray-200 rounded-2xl p-8 space-y-5"
         >
           <div>
-            <label className="block text-sm font-semibold mb-1.5">
+            <label className="block text-sm font-semibold text-gray-700 mb-1.5">
               Usuário
             </label>
             <input
               type="text"
               value={user}
               onChange={(e) => setUser(e.target.value)}
-              className="w-full border border-gray-200 rounded-lg px-4 py-2.5 text-sm outline-none focus:border-black transition-colors"
-              placeholder="admin"
+              className="w-full border border-gray-200 rounded-lg px-4 py-2.5 text-sm text-gray-900 outline-none focus:border-black transition-colors placeholder:text-gray-400"
+              placeholder="Digite seu usuário"
               autoComplete="username"
+              required
             />
           </div>
+
           <div>
-            <label className="block text-sm font-semibold mb-1.5">Senha</label>
+            <label className="block text-sm font-semibold text-gray-700 mb-1.5">
+              Senha
+            </label>
             <input
               type="password"
               value={pass}
               onChange={(e) => setPass(e.target.value)}
-              className="w-full border border-gray-200 rounded-lg px-4 py-2.5 text-sm outline-none focus:border-black transition-colors"
-              placeholder="••••••••"
+              className="w-full border border-gray-200 rounded-lg px-4 py-2.5 text-sm text-gray-900 outline-none focus:border-black transition-colors placeholder:text-gray-400"
+              placeholder="Digite sua senha"
               autoComplete="current-password"
+              required
             />
           </div>
 
@@ -73,13 +94,13 @@ export default function AdminLoginPage() {
             </p>
           )}
 
-          <button
+          <Button
             type="submit"
             disabled={loading}
-            className="w-full bg-black text-white font-semibold py-2.5 rounded-lg text-sm hover:bg-gray-800 transition-colors disabled:opacity-50"
+            className="w-full bg-black text-white font-semibold py-2.5 rounded-lg text-sm hover:bg-gray-800 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
           >
             {loading ? 'Entrando...' : 'Entrar'}
-          </button>
+          </Button>
         </form>
       </div>
     </div>

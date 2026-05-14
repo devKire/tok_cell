@@ -1,3 +1,4 @@
+// middleware.ts
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 
@@ -9,16 +10,28 @@ export function middleware(request: NextRequest) {
     return NextResponse.next();
   }
 
+  // Permite acesso à página de login e API routes
+  if (
+    request.nextUrl.pathname === '/admin/login' ||
+    request.nextUrl.pathname.startsWith('/api/admin') ||
+    request.nextUrl.pathname.startsWith('/_next') ||
+    request.nextUrl.pathname.includes('.')
+  ) {
+    return NextResponse.next();
+  }
+
   const auth = request.cookies.get('admin_auth')?.value;
-  if (auth === Buffer.from(`${ADMIN_USER}:${ADMIN_PASS}`).toString('base64')) {
+  const expectedToken = Buffer.from(`${ADMIN_USER}:${ADMIN_PASS}`).toString(
+    'base64'
+  );
+
+  if (auth === expectedToken) {
     return NextResponse.next();
   }
 
-  if (request.nextUrl.pathname === '/admin/login') {
-    return NextResponse.next();
-  }
-
-  return NextResponse.redirect(new URL('/admin/login', request.url));
+  // Redireciona para login se não autenticado
+  const loginUrl = new URL('/admin/login', request.url);
+  return NextResponse.redirect(loginUrl);
 }
 
 export const config = {

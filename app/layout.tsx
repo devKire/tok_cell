@@ -1,7 +1,9 @@
+// app/layout.tsx
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import './globals.css';
 import { CartProvider } from './hooks/use-cart';
+import { headers } from 'next/headers';
 import Header from './components/layout/Header';
 
 const inter = Inter({
@@ -27,16 +29,20 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const headersList = await headers();
+  const pathname = headersList.get('x-pathname') || '';
+  const isAdmin = pathname.startsWith('/admin');
+
   return (
     <html lang="pt-BR">
       <body className={inter.className}>
         <CartProvider>
-          <Header />
+          {isAdmin && <Header />}
           <main className="min-h-screen">{children}</main>
         </CartProvider>
       </body>
