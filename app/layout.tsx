@@ -3,6 +3,7 @@ import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import './globals.css';
 import { CartProvider } from './hooks/use-cart';
+import Footer from './components/layout/Footer';
 
 const inter = Inter({
   subsets: ['latin'],
@@ -37,6 +38,7 @@ export default async function RootLayout({
       <body className={inter.className}>
         <CartProvider>
           <main className="min-h-screen">{children}</main>
+          <Footer />
         </CartProvider>
       </body>
     </html>

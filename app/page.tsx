@@ -1,10 +1,8 @@
 'use client';
 
-import Link from 'next/link';
 import About from './components/lp/About';
 import Contact from './components/lp/Contact';
 import Features from './components/lp/Features';
-import Footer from './components/lp/Footer';
 import Hero from './components/lp/Hero';
 import Instagram from './components/lp/Instagram';
 import SectionDivider from './components/lp/SectionDivider';
@@ -38,7 +36,6 @@ export default function Home() {
 
       {/* AÇÃO - Levar à conversão/contato */}
       <Contact />
-      <Footer />
     </>
   );
 }

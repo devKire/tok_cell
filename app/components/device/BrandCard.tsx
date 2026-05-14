@@ -5,14 +5,14 @@ import Link from 'next/link';
 
 const BRAND_LOGOS: Record<string, string> = {
   apple:
-    'https://cdn.brandfetch.io/idnrCPuv87/theme/dark/logo.svg?c=1dxbfHSJFAPEGdCLU4o5B',
+    'https://cdn.brandfetch.io/idnrCPuv87/theme/light/logo.svg?c=1dxbfHSJFAPEGdCLU4o5B',
   samsung:
-    'https://cdn.brandfetch.io/iduaw_nOnR/theme/dark/idkTmfps1i.svg?c=1dxbfHSJFAPEGdCLU4o5B',
+    'https://cdn.brandfetch.io/iduaw_nOnR/theme/dark/logo.svg?c=1dxbfHSJFAPEGdCLU4o5B',
   motorola:
     'https://cdn.brandfetch.io/idei-0N6bA/theme/dark/logo.svg?c=1dxbfHSJFAPEGdCLU4o5B',
   xiaomi:
     'https://cdn.brandfetch.io/id3IaEYtG_/theme/dark/logo.svg?c=1dxbfHSJFAPEGdCLU4o5B',
-  asus: 'https://cdn.brandfetch.io/idGnlhbTXH/theme/dark/logo.svg?c=1dxbfHSJFAPEGdCLU4o5B',
+  asus: 'https://cdn.brandfetch.io/idGnlhbTXH/theme/light/logo.svg?c=1dxbfHSJFAPEGdCLU4o5B',
   oneplus:
     'https://cdn.brandfetch.io/idi46coDvW/theme/dark/symbol.svg?c=1dxbfHSJFAPEGdCLU4o5B',
   google:
