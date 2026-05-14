@@ -1,9 +1,38 @@
+//app\actions\index.ts
+
 /* eslint-disable @typescript-eslint/no-explicit-any */
-// app/actions.ts - Substitua TODO o arquivo pelo conteúdo abaixo
 'use server';
 
 import { prisma } from '../lib/prisma';
 import { revalidatePath } from 'next/cache';
+
+interface CreateOrderItem {
+  serviceId?: string;
+  serviceName: string;
+  variantName?: string;
+  componentName?: string;
+  price: number;
+  installTime?: string;
+}
+
+interface CreateOrderInput {
+  atendimento: 'LOJA' | 'LOCAL';
+  customerName: string;
+  customerCpf?: string;
+  customerPhone: string;
+  address?: string;
+  preferredTime?: string;
+  observation?: string;
+  gift: boolean;
+  subtotal: number;
+  discount: number;
+  locationFee: number;
+  total: number;
+  deviceModelId?: string;
+  deviceModelName?: string;
+  brandName?: string;
+  items: CreateOrderItem[];
+}
 
 // ─── Slug Helper ──────────────────────────────────────────
 function slug(str: string) {
@@ -44,7 +73,6 @@ export async function getBrandBySlug(slug: string) {
   });
 }
 
-// app/actions.ts
 export async function getLinesByBrand(brandSlug: string) {
   console.log('getLinesByBrand - Input slug:', brandSlug); // DEBUG
 
@@ -122,41 +150,145 @@ export async function getModelBySlug(
 // 🛒 PEDIDOS
 // ═══════════════════════════════════════════════════════════
 
-export async function createOrder(data: {
-  atendimento: 'LOJA' | 'LOCAL';
-  customerName: string;
-  customerCpf?: string;
-  customerPhone: string;
-  address?: string;
-  preferredTime?: string;
-  observation?: string;
-  gift: boolean;
-  subtotal: number;
-  discount: number;
-  locationFee: number;
-  total: number;
-  deviceModelId: string;
-  deviceModelName: string;
-  brandName: string;
-  items: {
-    serviceId?: string;
-    serviceName: string;
-    variantName?: string;
-    componentName?: string;
-    price: number;
-    installTime?: string;
-  }[];
-}) {
-  const { items, ...orderData } = data;
+export async function createOrder(data: CreateOrderInput) {
+  try {
+    const order = await prisma.order.create({
+      data: {
+        status: 'PENDING',
+        atendimento: data.atendimento,
+        customerName: data.customerName,
+        customerCpf: data.customerCpf || null,
+        customerPhone: data.customerPhone,
+        address: data.address || null,
+        preferredTime: data.preferredTime || null,
+        observation: data.observation || null,
+        gift: data.gift,
+        subtotal: data.subtotal,
+        discount: data.discount,
+        locationFee: data.locationFee,
+        total: data.total,
+        deviceModelId: data.deviceModelId || null,
+        deviceModelName: data.deviceModelName || null,
+        brandName: data.brandName || null,
+        items: {
+          create: data.items.map((item) => ({
+            serviceId: item.serviceId || null,
+            serviceName: item.serviceName,
+            variantName: item.variantName || null,
+            componentName: item.componentName || null,
+            price: item.price,
+            installTime: item.installTime || null,
+          })),
+        },
+      },
+      include: {
+        items: true,
+      },
+    });
 
-  return prisma.order.create({
-    data: {
-      ...orderData,
-      items: { create: items },
-    },
-  });
+    revalidatePath('/admin/orders');
+    return { success: true, order };
+  } catch (error) {
+    console.error('Error creating order:', error);
+    return {
+      success: false,
+      error: error instanceof Error ? error.message : 'Erro ao criar pedido',
+    };
+  }
 }
 
+// Versão alternativa que cria o pedido E envia o WhatsApp
+export async function createOrderAndNotify(data: CreateOrderInput) {
+  try {
+    // 1. Salvar no banco
+    const result = await createOrder(data);
+
+    if (!result.success) {
+      return result;
+    }
+
+    // 2. Gerar mensagem do WhatsApp (mesma lógica do frontend)
+    const message = generateOrderMessage(data);
+
+    // 3. Buscar número do WhatsApp das configurações
+    const settings = await prisma.settings.findFirst();
+    const whatsappNumber =
+      settings?.whatsapp ||
+      process.env.NEXT_PUBLIC_WHATSAPP_NUMBER ||
+      '5547997513609';
+
+    return {
+      success: true,
+      order: result.order,
+      whatsappUrl: `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`,
+      message,
+    };
+  } catch (error) {
+    console.error('Error in createOrderAndNotify:', error);
+    return {
+      success: false,
+      error:
+        error instanceof Error ? error.message : 'Erro ao processar pedido',
+    };
+  }
+}
+
+// Função auxiliar para gerar a mensagem do WhatsApp
+function generateOrderMessage(data: CreateOrderInput): string {
+  const lines: string[] = [
+    '📱 *Novo Pedido — Jc & Santana Celulares*',
+    '─────────────────────────',
+    '',
+    `👤 *Cliente:* ${data.customerName}`,
+    data.customerCpf ? `🪪 *CPF:* ${data.customerCpf}` : '',
+    `📞 *WhatsApp:* ${data.customerPhone}`,
+    '',
+    data.brandName || data.deviceModelName
+      ? `📱 *Aparelho:* ${[data.brandName, data.deviceModelName].filter(Boolean).join(' ')}`
+      : '',
+    '',
+    `📍 *Atendimento:* ${data.atendimento === 'LOCAL' ? 'No Local' : 'Na Loja'}`,
+    data.atendimento === 'LOCAL' && data.address
+      ? `🏠 *Endereço:* ${data.address}`
+      : '',
+    data.atendimento === 'LOCAL' && data.preferredTime
+      ? `🕐 *Horário preferido:* ${data.preferredTime}`
+      : '',
+    '',
+    '🔧 *Serviços Solicitados:*',
+    ...data.items.map((item, i) => {
+      const label = [item.serviceName, item.variantName, item.componentName]
+        .filter(Boolean)
+        .join(' — ');
+      return `  ${i + 1}. ${label} → ${formatCurrency(item.price)}`;
+    }),
+    '',
+    '─────────────────────────',
+    `💰 *Subtotal:* ${formatCurrency(data.subtotal)}`,
+    data.discount > 0
+      ? `🎉 *Desconto multi-serviço (5%):* -${formatCurrency(data.discount)}`
+      : '',
+    data.atendimento === 'LOCAL'
+      ? `🚗 *Taxa de deslocamento (7%):* +${formatCurrency(data.locationFee)}`
+      : '',
+    `✅ *Total: ${formatCurrency(data.total)}*`,
+    '',
+    data.gift ? '🎁 *Brinde:* Película ou capinha' : '',
+    data.observation ? `📝 *Observação:* ${data.observation}` : '',
+    '',
+    `🆔 *Pedido #:* Será gerado automaticamente`,
+  ];
+
+  return lines.filter((l) => l !== '').join('\n');
+}
+
+// Helper para formatação (mesmo que o frontend)
+function formatCurrency(value: number): string {
+  return new Intl.NumberFormat('pt-BR', {
+    style: 'currency',
+    currency: 'BRL',
+  }).format(value);
+}
 export async function getOrders(page = 1, pageSize = 20) {
   const [orders, total] = await Promise.all([
     prisma.order.findMany({

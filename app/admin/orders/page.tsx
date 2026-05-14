@@ -1,9 +1,10 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-// app/admin/orders/page.tsx - Pedidos (atualizado)
+// app/admin/orders/page.tsx (atualizado)
 import { adminGetOrders } from '@/app/actions/admin';
 import { formatDistanceToNow } from 'date-fns';
 import { ptBR } from 'date-fns/locale';
 import { OrderStatusSelect } from './order-status-select';
+import Link from 'next/link';
 
 function fmtBRL(v: number) {
   return new Intl.NumberFormat('pt-BR', {
@@ -35,6 +36,9 @@ export default async function AdminOrdersPage() {
                 Aparelho
               </th>
               <th className="text-left px-4 py-3 text-xs font-bold uppercase tracking-wider text-gray-400">
+                Serviços
+              </th>
+              <th className="text-left px-4 py-3 text-xs font-bold uppercase tracking-wider text-gray-400">
                 Atendimento
               </th>
               <th className="text-left px-4 py-3 text-xs font-bold uppercase tracking-wider text-gray-400">
@@ -52,7 +56,7 @@ export default async function AdminOrdersPage() {
             {orders.length === 0 && (
               <tr>
                 <td
-                  colSpan={6}
+                  colSpan={7}
                   className="px-4 py-12 text-center text-gray-400"
                 >
                   Nenhum pedido ainda
@@ -62,13 +66,35 @@ export default async function AdminOrdersPage() {
             {orders.map((order: any) => (
               <tr key={order.id} className="hover:bg-gray-50 transition-colors">
                 <td className="px-4 py-3">
-                  <div className="font-medium">{order.customerName}</div>
+                  <Link
+                    href={`/admin/orders/${order.id}`}
+                    className="font-medium text-gray-600 hover:text-blue-600 transition-colors"
+                  >
+                    {order.customerName}
+                  </Link>
                   <div className="text-xs text-gray-400">
                     {order.customerPhone}
                   </div>
                 </td>
                 <td className="px-4 py-3 text-gray-600">
-                  {order.brandName} {order.deviceModelName}
+                  <Link
+                    href={`/admin/orders/${order.id}`}
+                    className="hover:text-blue-600"
+                  >
+                    {order.brandName} {order.deviceModelName}
+                  </Link>
+                </td>
+                <td className="px-4 py-3">
+                  <div className="flex flex-wrap gap-1">
+                    {order.items.map((item: any) => (
+                      <span
+                        key={item.id}
+                        className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-gray-100 text-gray-800"
+                      >
+                        {item.serviceName}
+                      </span>
+                    ))}
+                  </div>
                 </td>
                 <td className="px-4 py-3">
                   <span
@@ -81,7 +107,7 @@ export default async function AdminOrdersPage() {
                     {order.atendimento === 'LOCAL' ? 'No Local' : 'Na Loja'}
                   </span>
                 </td>
-                <td className="px-4 py-3 font-semibold">
+                <td className="px-4 py-3 font-semibold text-green-500">
                   {fmtBRL(Number(order.total))}
                 </td>
                 <td className="px-4 py-3">

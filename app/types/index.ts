@@ -101,3 +101,39 @@ export type OrderPayload = {
   deviceModelName: string;
   brandName: string;
 };
+
+export interface OrderItem {
+  id: string;
+  orderId: string;
+  serviceId: string | null;
+  serviceName: string;
+  variantName: string | null;
+  componentName: string | null;
+  price: number;
+  installTime: string | null;
+  createdAt: Date;
+  updatedAt: Date;
+}
+
+export interface Order {
+  id: string;
+  status: 'PENDING' | 'CONFIRMED' | 'IN_PROGRESS' | 'COMPLETED' | 'CANCELED';
+  atendimento: 'LOJA' | 'LOCAL';
+  customerName: string;
+  customerCpf: string | null;
+  customerPhone: string;
+  address: string | null;
+  preferredTime: string | null;
+  observation: string | null;
+  gift: boolean;
+  subtotal: number;
+  discount: number;
+  locationFee: number;
+  total: number;
+  deviceModelId: string | null;
+  deviceModelName: string | null;
+  brandName: string | null;
+  items: OrderItem[];
+  createdAt: Date;
+  updatedAt: Date;
+}

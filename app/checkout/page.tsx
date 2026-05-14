@@ -7,6 +7,7 @@ import { openWhatsApp } from '@/app/lib/whatsapp';
 import { toast } from 'sonner';
 import SectionTitle from '../components/SectionTitle';
 import Header from '../components/layout/Header';
+import { createOrder } from '../actions';
 
 function fmtBRL(v: number) {
   return new Intl.NumberFormat('pt-BR', {
@@ -28,6 +29,7 @@ export default function CheckoutPage() {
   const [time, setTime] = useState('');
   const [obs, setObs] = useState('');
   const [gift, setGift] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   if (items.length === 0) {
     return (
@@ -49,7 +51,7 @@ export default function CheckoutPage() {
 
   const finalTotal = total(atend);
 
-  function handleFinalize() {
+  async function handleFinalize() {
     if (!name.trim() || !phone.trim()) {
       toast.error('Preencha nome e WhatsApp para continuar');
       return;
@@ -59,25 +61,72 @@ export default function CheckoutPage() {
       return;
     }
 
-    openWhatsApp({
-      form: {
+    setIsSubmitting(true);
+
+    try {
+      // 1. Primeiro salva no banco
+      const orderData = {
         atendimento: atend,
-        name,
-        phone,
-        cpf,
-        address,
-        preferredTime: time,
-        observation: obs,
+        customerName: name,
+        customerCpf: cpf || undefined,
+        customerPhone: phone,
+        address: atend === 'LOCAL' ? address : undefined,
+        preferredTime: time || undefined,
+        observation: obs || undefined,
         gift,
-      },
-      items,
-      subtotal,
-      discount,
-      locationFee,
-      total: finalTotal,
-      deviceModelName: items[0]?.modelName ?? '',
-      brandName: items[0]?.brandName ?? '',
-    });
+        subtotal,
+        discount,
+        locationFee,
+        total: finalTotal,
+        deviceModelName: items[0]?.modelName,
+        brandName: items[0]?.brandName,
+        items: items.map((item) => ({
+          serviceId: item.service.id,
+          serviceName: item.service.name,
+          variantName: item.selectedVariant?.name,
+          componentName: item.selectedComponent?.name,
+          price: item.price,
+          installTime: item.service.installTime,
+        })),
+      };
+
+      const result = await createOrder(orderData);
+
+      if (!result.success) {
+        toast.error('Erro ao salvar pedido. Tente novamente.');
+        return;
+      }
+
+      // 2. Depois abre o WhatsApp
+      openWhatsApp({
+        form: {
+          atendimento: atend,
+          name,
+          phone,
+          cpf,
+          address,
+          preferredTime: time,
+          observation: obs,
+          gift,
+        },
+        items,
+        subtotal,
+        discount,
+        locationFee,
+        total: finalTotal,
+        deviceModelName: items[0]?.modelName ?? '',
+        brandName: items[0]?.brandName ?? '',
+      });
+
+      // 3. Limpa o carrinho
+      clearCart();
+      toast.success('Pedido enviado com sucesso!');
+    } catch (error) {
+      console.error('Error:', error);
+      toast.error('Erro ao processar pedido');
+    } finally {
+      setIsSubmitting(false);
+    }
   }
 
   return (
@@ -257,13 +306,20 @@ export default function CheckoutPage() {
       </div>
 
       <button
-        onClick={() => {
-          handleFinalize();
-          clearCart();
-        }}
-        className="w-full bg-[#25D366] hover:bg-[#128C7E] text-white font-bold py-4 rounded-xl text-base transition-colors flex items-center justify-center gap-2"
+        onClick={handleFinalize}
+        disabled={isSubmitting}
+        className="w-full bg-[#25D366] hover:bg-[#128C7E] text-white font-bold py-4 rounded-xl text-base transition-colors flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
       >
-        <span>Finalizar pelo WhatsApp</span>
+        {isSubmitting ? (
+          <>
+            <span className="animate-spin">⏳</span>
+            <span>Salvando pedido...</span>
+          </>
+        ) : (
+          <>
+            <span>Finalizar pelo WhatsApp</span>
+          </>
+        )}
       </button>
       <p className="text-center text-xs text-gray-400 mt-3">
         Você será redirecionado para o WhatsApp com o pedido formatado
