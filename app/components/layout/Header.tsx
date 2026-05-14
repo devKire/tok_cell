@@ -9,6 +9,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
+import { usePathname, useRouter } from 'next/navigation'; // Adicionar imports
 
 const navigation = [
   { name: 'Início', href: '#hero' },
@@ -22,6 +23,8 @@ export default function Header() {
   const { itemCount } = useCart();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const pathname = usePathname(); // Detectar rota atual
+  const router = useRouter(); // Para navegação programática
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 20);
@@ -38,12 +41,26 @@ export default function Header() {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
+  // Verifica se está na página inicial
+  const isHomePage = pathname === '/';
+
   const scrollToSection = (
     e: React.MouseEvent<HTMLAnchorElement>,
     href: string
   ) => {
     e.preventDefault();
-    document.querySelector(href)?.scrollIntoView({ behavior: 'smooth' });
+
+    if (isHomePage) {
+      // Se está na home, faz scroll suave para a seção
+      const element = document.querySelector(href);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+    } else {
+      // Se está em outra página, navega para a home com a âncora
+      router.push(`/${href}`);
+    }
+
     setMobileMenuOpen(false);
   };
 
