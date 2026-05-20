@@ -40,7 +40,7 @@ export default function AdminLoginPage() {
         <div className="text-center mb-8">
           <div className="flex justify-center mb-6">
             <Image
-              src="/logo.png"
+              src="/logo_tokcell.png"
               alt="Tok Cell Logo"
               width={80}
               height={80}

@@ -125,7 +125,7 @@ export default function Contact() {
 
                   {/* Map Image*/}
                   <Image
-                    src="/map.png"
+                    src="/map_tokcell.png"
                     alt="Mapa de localização"
                     width={200}
                     height={200}

@@ -143,7 +143,7 @@ export default function Header() {
               >
                 <div className="absolute inset-0 rounded-full bg-gradient-to-br from-white/20 to-white/5 blur-md opacity-60" />
                 <Image
-                  src="/logo.png"
+                  src="/logo_tokcell.png"
                   alt="Logo"
                   width={38}
                   height={38}

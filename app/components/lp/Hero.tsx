@@ -126,11 +126,11 @@ export default function Hero() {
             <div className="absolute inset-0 bg-blue-600/20 blur-2xl rounded-full scale-150" />
 
             <Image
-              src="/logo.png"
+              src="/logo_tokcell.png"
               alt="Tok Cell"
               width={200}
               height={200}
-              className="relative z-10 w-32 h-32 sm:w-40 sm:h-40 md:w-48 md:h-48 lg:w-56 lg:h-56 object-contain mx-auto"
+              className="relative z-10 w-42 h-42 sm:w-50 sm:h-40 md:w-58 md:h-58 lg:w-66 lg:h-66 object-contain mx-auto"
               priority
               loading="eager"
               sizes="(max-width: 640px) 128px, (max-width: 768px) 160px, (max-width: 1024px) 192px, 224px"

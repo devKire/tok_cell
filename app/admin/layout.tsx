@@ -139,7 +139,7 @@ export default function AdminLayout({
           {!isCollapsed ? (
             <div className="flex items-center gap-3">
               <Image
-                src="/logo.png"
+                src="/logo_tokcell.png"
                 alt="Tok Cell"
                 width={32}
                 height={32}
@@ -154,7 +154,7 @@ export default function AdminLayout({
             </div>
           ) : (
             <Image
-              src="/logo.png"
+              src="/logo_tokcell.png"
               alt="Tok Cell"
               width={28}
               height={28}

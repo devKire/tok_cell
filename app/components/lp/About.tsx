@@ -116,7 +116,7 @@ export default function About() {
                 <div className="absolute inset-0 rounded-3xl bg-gradient-to-r from-blue-600/20 via-transparent to-blue-600/20" />
 
                 <Image
-                  src="/logo.png"
+                  src="/logo_tokcell.png"
                   alt="Tok Cell"
                   width={280}
                   height={280}

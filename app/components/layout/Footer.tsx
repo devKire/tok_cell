@@ -32,7 +32,7 @@ export default function Footer() {
               <div className="relative shrink-0">
                 <div className="absolute inset-0 rounded-full bg-gradient-to-br from-blue-500/20 to-blue-600/10 blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 <Image
-                  src="/logo.png"
+                  src="/logo_tokcell.png"
                   alt="Tok Cell"
                   width={42}
                   height={42}
