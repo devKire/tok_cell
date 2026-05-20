@@ -34,8 +34,8 @@ export default function Features() {
   return (
     <section id="features" className="py-20 relative overflow-hidden">
       {/* Background Decoration */}
-      <div className="absolute top-0 right-0 w-96 h-96 bg-red-600/5 rounded-full blur-3xl" />
-      <div className="absolute bottom-0 left-0 w-96 h-96 bg-red-600/5 rounded-full blur-3xl" />
+      <div className="absolute top-0 right-0 w-96 h-96 bg-blue-600/5 rounded-full blur-3xl" />
+      <div className="absolute bottom-0 left-0 w-96 h-96 bg-blue-600/5 rounded-full blur-3xl" />
 
       <div className="section-container relative">
         <motion.div
@@ -46,8 +46,7 @@ export default function Features() {
           className="text-center mb-16"
         >
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">
-            Por que escolher a{' '}
-            <span className="text-red-500">Jc & Santana?</span>
+            Por que escolher a <span className="text-blue-500">Tok Cell?</span>
           </h2>
           <p className="text-gray-400 text-lg max-w-2xl mx-auto">
             Diferenciais que fazem a diferença no atendimento ao seu smartphone
@@ -69,12 +68,12 @@ export default function Features() {
                 <motion.div
                   whileHover={{ scale: 1.1, rotate: 5 }}
                   transition={{ duration: 0.3 }}
-                  className="w-20 h-20 bg-gradient-to-br from-red-600/20 to-red-900/20 backdrop-blur-sm rounded-2xl flex items-center justify-center border border-white/10"
+                  className="w-20 h-20 bg-gradient-to-br from-blue-600/20 to-blue-900/20 backdrop-blur-sm rounded-2xl flex items-center justify-center border border-white/10"
                 >
-                  <feature.icon className="w-10 h-10 text-red-500" />
+                  <feature.icon className="w-10 h-10 text-blue-500" />
                 </motion.div>
                 {/* Glow effect on hover */}
-                <div className="absolute inset-0 bg-red-500/20 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                <div className="absolute inset-0 bg-blue-500/20 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               </div>
 
               <h3 className="text-xl font-semibold text-white mb-3">

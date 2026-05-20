@@ -110,8 +110,8 @@ export default function CartDrawer({ children }: { children: ReactNode }) {
                       </span>
                       <button
                         onClick={() => removeItem(item.id)}
-                        className="p-1 rounded-md text-white/25 hover:text-red-400 
-                          hover:bg-red-500/10 transition-all duration-200"
+                        className="p-1 rounded-md text-white/25 hover:text-blue-400 
+                          hover:bg-blue-500/10 transition-all duration-200"
                         aria-label="Remover item"
                       >
                         <Trash2 className="h-3.5 w-3.5" />

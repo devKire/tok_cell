@@ -3,7 +3,7 @@ import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 
 const ADMIN_USER = process.env.ADMIN_USER ?? 'admin';
-const ADMIN_PASS = process.env.ADMIN_PASS ?? 'jcsantana2025';
+const ADMIN_PASS = process.env.ADMIN_PASS ?? 'tokcell2025';
 
 export function middleware(request: NextRequest) {
   if (!request.nextUrl.pathname.startsWith('/admin')) {

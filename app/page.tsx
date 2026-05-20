@@ -4,7 +4,6 @@ import About from './components/lp/About';
 import Contact from './components/lp/Contact';
 import Features from './components/lp/Features';
 import Hero from './components/lp/Hero';
-import Instagram from './components/lp/Instagram';
 import SectionDivider from './components/lp/SectionDivider';
 import Services from './components/lp/Services';
 import SocialProof from './components/lp/SocialProof';
@@ -30,8 +29,6 @@ export default function Home() {
       <Features />
       <SectionDivider />
       <About />
-      <SectionDivider />
-      <Instagram />
       <SectionDivider />
 
       {/* AÇÃO - Levar à conversão/contato */}

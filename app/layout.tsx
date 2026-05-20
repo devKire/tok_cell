@@ -13,16 +13,15 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title:
-    'Jc & Santana Celulares | Assistência Técnica Especializada em Joinville',
+  title: 'Tok Cell | Assistência Técnica em Celulares em Joinville',
   description:
-    'Conserto rápido de celulares em Joinville. Troca de tela, bateria, reparo em placa e desbloqueio com garantia. Atendimento em até 1 hora.',
+    'Assistência técnica em celulares e venda de acessórios em Joinville. Tok Cell atua desde 2016 com produtos de qualidade, bons fornecedores e atendimento especializado.',
   keywords:
-    'assistência técnica celular Joinville, conserto de celular, troca de tela, reparo em placa, desbloqueio, Jc Santana Celulares',
+    'assistência técnica celular Joinville, conserto de celular, acessórios para celular, troca de tela, reparo em placa, Tok Cell',
   openGraph: {
-    title: 'Jc & Santana Celulares | Assistência Técnica em Joinville',
+    title: 'Tok Cell | Assistência Técnica em Celulares em Joinville',
     description:
-      'Seu celular novo de novo em poucas horas. Conserto rápido com garantia.',
+      'Assistência técnica em celulares e venda de acessórios em Joinville desde 2016.',
     type: 'website',
     locale: 'pt_BR',
   },

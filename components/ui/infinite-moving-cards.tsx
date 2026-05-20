@@ -99,10 +99,10 @@ export const InfiniteMovingCards = ({
             key={`${item.name}-${idx}`}
           >
             <blockquote>
-              <Quote className="absolute top-4 right-4 w-8 h-8 text-red-500/20" />
+              <Quote className="absolute top-4 right-4 w-8 h-8 text-blue-500/20" />
 
               <div className="mb-4 flex items-center space-x-4">
-                <div className="relative h-14 w-14 overflow-hidden rounded-full ring-2 ring-red-500/30">
+                <div className="relative h-14 w-14 overflow-hidden rounded-full ring-2 ring-blue-500/30">
                   {item.image ? (
                     <Image
                       src={item.image}
@@ -112,7 +112,7 @@ export const InfiniteMovingCards = ({
                       className="h-full w-full object-cover"
                     />
                   ) : (
-                    <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-red-600 to-red-800 text-2xl text-white">
+                    <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-blue-600 to-blue-800 text-2xl text-white">
                       {item.name.charAt(0)}
                     </div>
                   )}

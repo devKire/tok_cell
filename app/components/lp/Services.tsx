@@ -48,15 +48,15 @@ const services = [
     icon: Wrench,
     title: 'Manutenção Geral',
     description: 'Limpeza e reparos completos.',
-    color: 'from-red-500 to-red-600',
-    bgGlow: 'bg-red-500/20',
+    color: 'from-blue-500 to-blue-600',
+    bgGlow: 'bg-blue-500/20',
   },
   {
     icon: Search,
     title: 'Outros Serviços',
     description: 'Consulte-nos para outras necessidades.',
-    color: 'from-red-500 to-red-600',
-    bgGlow: 'bg-red-500/20',
+    color: 'from-blue-500 to-blue-600',
+    bgGlow: 'bg-blue-500/20',
   },
 ];
 
@@ -129,7 +129,7 @@ export default function Services() {
           className="mb-16 text-center"
         >
           <h2 className="mb-4 text-3xl font-bold sm:text-4xl md:text-5xl">
-            Nossos <span className="text-red-500">Serviços</span>
+            Nossos <span className="text-blue-500">Serviços</span>
           </h2>
 
           <p className="mx-auto max-w-2xl text-lg text-gray-400">
@@ -155,7 +155,7 @@ export default function Services() {
             <motion.p
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
-              className="mt-4 text-center text-sm text-red-500"
+              className="mt-4 text-center text-sm text-blue-500"
             >
               Todos os serviços foram visualizados!
             </motion.p>
@@ -204,7 +204,7 @@ export default function Services() {
                   href="/servicos"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group relative flex h-full flex-col overflow-hidden rounded-3xl border border-white/10 bg-white/[0.03] p-6 backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 hover:border-red-500/30 hover:bg-white/[0.05]"
+                  className="group relative flex h-full flex-col overflow-hidden rounded-3xl border border-white/10 bg-white/[0.03] p-6 backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 hover:border-blue-500/30 hover:bg-white/[0.05]"
                 >
                   {/* Glow */}
                   <div
@@ -234,7 +234,7 @@ export default function Services() {
                     </div>
 
                     {/* CTA */}
-                    <div className="mt-6 flex items-center gap-2 text-sm font-medium text-red-400 transition-all duration-300 group-hover:gap-3 group-hover:text-red-300">
+                    <div className="mt-6 flex items-center gap-2 text-sm font-medium text-blue-400 transition-all duration-300 group-hover:gap-3 group-hover:text-blue-300">
                       <span>
                         Clique para fazer Orçamento
                         <span className="text-green-500"> Gratuito</span>{' '}

@@ -132,7 +132,7 @@ export function ModelList({ models }: { models: any[] }) {
                       className={`px-2 py-0.5 rounded text-xs font-medium transition-colors ${
                         editActive
                           ? 'bg-green-100 text-green-700 hover:bg-green-200'
-                          : 'bg-red-100 text-red-700 hover:bg-red-200'
+                          : 'bg-blue-100 text-blue-700 hover:bg-blue-200'
                       }`}
                     >
                       {editActive ? 'Sim' : 'Não'}
@@ -201,7 +201,7 @@ export function ModelList({ models }: { models: any[] }) {
                       className={`px-2 py-0.5 rounded text-xs font-medium ${
                         model.active
                           ? 'bg-green-100 text-green-700'
-                          : 'bg-red-100 text-red-700'
+                          : 'bg-blue-100 text-blue-700'
                       }`}
                     >
                       {model.active ? 'Sim' : 'Não'}
@@ -218,7 +218,7 @@ export function ModelList({ models }: { models: any[] }) {
                       </button>
                       <button
                         onClick={() => handleDelete(model.id)}
-                        className="p-1 rounded hover:bg-red-50 text-red-600 hover:text-red-700 transition-colors"
+                        className="p-1 rounded hover:bg-blue-50 text-blue-600 hover:text-blue-700 transition-colors"
                         title="Excluir"
                       >
                         <Trash2 className="h-4 w-4" />

@@ -175,13 +175,13 @@ export default function CheckoutPage() {
                 className={`relative border rounded-xl p-4 text-left transition-all duration-200 overflow-hidden group
                   ${
                     atend === opt
-                      ? 'border-red-500/30 bg-red-500/[0.06]'
+                      ? 'border-blue-500/30 bg-blue-500/[0.06]'
                       : 'border-white/[0.08] bg-white/[0.03] hover:bg-white/[0.05] hover:border-white/[0.12]'
                   }`}
               >
                 {/* Glow atrás do ícone */}
                 {atend === opt && (
-                  <div className="absolute -top-4 -right-4 w-16 h-16 bg-red-500/10 rounded-full blur-xl" />
+                  <div className="absolute -top-4 -right-4 w-16 h-16 bg-blue-500/10 rounded-full blur-xl" />
                 )}
 
                 <div className="relative">
@@ -189,7 +189,7 @@ export default function CheckoutPage() {
                     className={`w-10 h-10 rounded-xl flex items-center justify-center mb-2.5 transition-all duration-200
                     ${
                       atend === opt
-                        ? 'bg-red-500/15 text-red-400'
+                        ? 'bg-blue-500/15 text-blue-400'
                         : 'bg-white/[0.06] text-white/40 group-hover:text-white/60'
                     }`}
                   >
@@ -316,16 +316,13 @@ export default function CheckoutPage() {
                       Selecione um horário
                     </option>
                     <option className="bg-[#111] text-white">
-                      Manhã (9h às 12h)
+                      Manhã (08:00 às 12:00)
                     </option>
                     <option className="bg-[#111] text-white">
-                      Tarde 1 (13h30 às 15h)
+                      Tarde 1 (13:00 às 15:00)
                     </option>
                     <option className="bg-[#111] text-white">
-                      Tarde 2 (15h às 17h)
-                    </option>
-                    <option className="bg-[#111] text-white">
-                      Fim de tarde (17h às 19h)
+                      Tarde 2 (15:00 às 18:00)
                     </option>
                   </select>
                 </div>
@@ -364,12 +361,12 @@ export default function CheckoutPage() {
               />
               <div
                 className="w-5 h-5 rounded-md border border-white/[0.12] bg-white/[0.05] 
-                peer-checked:bg-red-500/20 peer-checked:border-red-500/40
+                peer-checked:bg-blue-500/20 peer-checked:border-blue-500/40
                 flex items-center justify-center transition-all duration-200"
               >
                 {gift && (
                   <svg
-                    className="w-3 h-3 text-red-400"
+                    className="w-3 h-3 text-blue-400"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -385,7 +382,7 @@ export default function CheckoutPage() {
               </div>
             </div>
             <span className="text-white/60 group-hover:text-white/80 transition-colors flex items-center gap-2">
-              <Gift className="h-4 w-4 text-red-400/60" />
+              <Gift className="h-4 w-4 text-blue-400/60" />
               Quero película brinde ou capinha
             </span>
           </label>

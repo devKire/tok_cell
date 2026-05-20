@@ -89,7 +89,7 @@ export default function SocialProof() {
 
           <h2 className="text-3xl sm:text-4xl font-bold mb-4">
             Centenas de clientes{' '}
-            <span className="text-red-500">satisfeitos</span>
+            <span className="text-blue-500">satisfeitos</span>
           </h2>
           <p className="text-gray-400 text-lg">
             Veja o que nossos clientes dizem sobre nós

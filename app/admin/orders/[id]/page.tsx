@@ -40,8 +40,8 @@ const STATUS_LABELS: Record<
   },
   CANCELED: {
     label: 'Cancelado',
-    color: 'text-red-800',
-    bgColor: 'bg-red-100',
+    color: 'text-blue-800',
+    bgColor: 'bg-blue-100',
   },
 };
 
@@ -119,7 +119,7 @@ export default async function OrderDetailPage({
                 <div
                   className={`h-full rounded-full transition-all duration-500 ${
                     order.status === 'CANCELED'
-                      ? 'bg-red-500'
+                      ? 'bg-blue-500'
                       : order.status === 'COMPLETED'
                         ? 'bg-green-500'
                         : order.status === 'IN_PROGRESS'

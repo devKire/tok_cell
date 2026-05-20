@@ -160,7 +160,7 @@ export default function Header() {
                 className="overflow-hidden whitespace-nowrap"
               >
                 <p className="text-[13px] sm:text-[15px] font-semibold tracking-tight text-white leading-none">
-                  Jc & Santana
+                  Tok Cell
                 </p>
                 <p className="text-[10px] sm:text-[11px] text-white/40 mt-[3px] tracking-wide uppercase font-medium">
                   Celulares
@@ -196,7 +196,7 @@ export default function Header() {
                   backgroundColor: 'rgba(255,255,255,0.1)',
                 }}
                 whileTap={{ scale: 0.97 }}
-                href="https://wa.me/5547997513609"
+                href="https://wa.me/554730171887"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="hidden lg:flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.05] px-4 py-2 text-[13px] font-medium text-white/80 hover:text-white backdrop-blur-xl transition-colors duration-300"
@@ -238,7 +238,7 @@ export default function Header() {
               {/* WhatsApp icon — mobile */}
               <motion.a
                 whileTap={{ scale: 0.93 }}
-                href="https://wa.me/5547997513609"
+                href="https://wa.me/554730171887"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="WhatsApp"
@@ -341,7 +341,7 @@ export default function Header() {
                     duration: 0.26,
                   }}
                   whileTap={{ scale: 0.98 }}
-                  href="https://wa.me/5547997513609"
+                  href="https://wa.me/554730171887"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center justify-center gap-2 rounded-2xl border border-white/10 bg-white/[0.05] px-4 py-3 text-[14px] font-medium text-white hover:bg-white/[0.09] active:bg-white/[0.12] transition-all duration-200"

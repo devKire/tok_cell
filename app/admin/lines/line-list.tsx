@@ -90,7 +90,7 @@ export function LineList({ lines }: { lines: any[] }) {
                       className={`px-2 py-0.5 rounded text-xs font-medium ${
                         editActive
                           ? 'bg-green-100 text-green-700'
-                          : 'bg-red-100 text-red-700'
+                          : 'bg-blue-100 text-blue-700'
                       }`}
                     >
                       {editActive ? 'Sim' : 'Não'}
@@ -128,7 +128,7 @@ export function LineList({ lines }: { lines: any[] }) {
                       className={`px-2 py-0.5 rounded text-xs font-medium ${
                         line.active
                           ? 'bg-green-100 text-green-700'
-                          : 'bg-red-100 text-red-700'
+                          : 'bg-blue-100 text-blue-700'
                       }`}
                     >
                       {line.active ? 'Sim' : 'Não'}
@@ -144,7 +144,7 @@ export function LineList({ lines }: { lines: any[] }) {
                       </button>
                       <button
                         onClick={() => handleDelete(line.id)}
-                        className="text-red-600 hover:text-red-700"
+                        className="text-blue-600 hover:text-blue-700"
                       >
                         <Trash2 className="h-4 w-4" />
                       </button>

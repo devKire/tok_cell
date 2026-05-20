@@ -140,14 +140,14 @@ export default function AdminLayout({
             <div className="flex items-center gap-3">
               <Image
                 src="/logo.png"
-                alt="Jc & Santana Celulares"
+                alt="Tok Cell"
                 width={32}
                 height={32}
                 className="rounded-full ring-1 ring-gray-200"
               />
               <div className="flex-1 min-w-0">
                 <p className="text-sm font-bold text-gray-900 truncate">
-                  Jc & Santana
+                  Tok Cell
                 </p>
                 <p className="text-xs text-gray-400">Painel Admin</p>
               </div>
@@ -155,7 +155,7 @@ export default function AdminLayout({
           ) : (
             <Image
               src="/logo.png"
-              alt="Jc & Santana Celulares"
+              alt="Tok Cell"
               width={28}
               height={28}
               className="rounded-full ring-1 ring-gray-200"
@@ -219,7 +219,7 @@ export default function AdminLayout({
             onClick={handleLogout}
             disabled={isLoggingOut}
             title={isCollapsed ? 'Sair' : undefined}
-            className={`flex items-center gap-2 text-xs text-gray-400 hover:text-red-600 transition-colors w-full disabled:opacity-50
+            className={`flex items-center gap-2 text-xs text-gray-400 hover:text-blue-600 transition-colors w-full disabled:opacity-50
               ${isCollapsed ? 'justify-center' : ''}
             `}
           >

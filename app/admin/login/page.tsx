@@ -41,7 +41,7 @@ export default function AdminLoginPage() {
           <div className="flex justify-center mb-6">
             <Image
               src="/logo.png"
-              alt="Jc & Santana Logo"
+              alt="Tok Cell Logo"
               width={80}
               height={80}
               className="rounded-full ring-2 ring-gray-200 shadow-sm"
@@ -49,7 +49,7 @@ export default function AdminLoginPage() {
             />
           </div>
 
-          <h1 className="text-2xl font-bold text-gray-900">Jc & Santana</h1>
+          <h1 className="text-2xl font-bold text-gray-900">Tok Cell</h1>
           <p className="text-sm text-gray-500 mt-1">Painel Administrativo</p>
         </div>
 
@@ -89,7 +89,7 @@ export default function AdminLoginPage() {
           </div>
 
           {error && (
-            <p className="text-xs text-red-600 bg-red-50 border border-red-100 rounded-lg px-3 py-2">
+            <p className="text-xs text-blue-600 bg-blue-50 border border-blue-100 rounded-lg px-3 py-2">
               {error}
             </p>
           )}

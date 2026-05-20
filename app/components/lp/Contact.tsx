@@ -8,7 +8,7 @@ export default function Contact() {
   return (
     <section id="contact" className="py-20 relative">
       {/* Background Glow */}
-      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[500px] h-[500px] bg-red-600/10 rounded-full blur-3xl" />
+      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[500px] h-[500px] bg-blue-600/10 rounded-full blur-3xl" />
 
       <div className="section-container relative">
         <motion.div
@@ -19,7 +19,7 @@ export default function Contact() {
           className="text-center mb-16"
         >
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">
-            Fale <span className="text-red-500">Conosco</span>
+            Fale <span className="text-blue-500">Conosco</span>
           </h2>
           <p className="text-gray-400 text-lg">
             Estamos prontos para atender você
@@ -38,19 +38,20 @@ export default function Contact() {
             {/* Address */}
             <div className="glass-card p-6">
               <div className="flex items-start space-x-4">
-                <div className="w-12 h-12 bg-red-600/20 rounded-xl flex items-center justify-center flex-shrink-0">
-                  <MapPin className="w-6 h-6 text-red-500" />
+                <div className="w-12 h-12 bg-blue-600/20 rounded-xl flex items-center justify-center flex-shrink-0">
+                  <MapPin className="w-6 h-6 text-blue-500" />
                 </div>
                 <div>
                   <h3 className="font-semibold text-white mb-2">Endereço</h3>
                   <a
-                    href="https://maps.google.com/?q=Av.+Alwino+Hansen,+9+-+Adhemar+Garcia,+Joinville/SC"
+                    href="https://maps.google.com/?q=R.+Eng.+Eug%C3%AAnio+Junqueira+Neto,+95+-+Adhemar+Garcia,+Joinville+-+SC,+89230-734"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-gray-400 hover:text-red-500 transition-colors"
+                    className="text-gray-400 hover:text-blue-500 transition-colors"
                   >
-                    Av. Alwino Hansen, 9<br />
-                    Adhemar Garcia, Joinville/SC
+                    R. Eng. Eugênio Junqueira Neto, 95
+                    <br />
+                    Adhemar Garcia, Joinville - SC, 89230-734
                   </a>
                 </div>
               </div>
@@ -59,14 +60,14 @@ export default function Contact() {
             {/* Hours */}
             <div className="glass-card p-6">
               <div className="flex items-start space-x-4">
-                <div className="w-12 h-12 bg-red-600/20 rounded-xl flex items-center justify-center flex-shrink-0">
-                  <Clock className="w-6 h-6 text-red-500" />
+                <div className="w-12 h-12 bg-blue-600/20 rounded-xl flex items-center justify-center flex-shrink-0">
+                  <Clock className="w-6 h-6 text-blue-500" />
                 </div>
                 <div>
                   <h3 className="font-semibold text-white mb-2">Horários</h3>
                   <div className="text-gray-400 space-y-1">
-                    <p>Seg a Sex: 9h às 19h</p>
-                    <p>Sáb: 9h às 19h</p>
+                    <p>Segunda à Sexta: 08:00 às 12:00 - 13:00 às 18:00</p>
+                    <p>Sábado: 08:00 às 12:00</p>
                   </div>
                 </div>
               </div>
@@ -75,16 +76,16 @@ export default function Contact() {
             {/* Phone */}
             <div className="glass-card p-6">
               <div className="flex items-start space-x-4">
-                <div className="w-12 h-12 bg-red-600/20 rounded-xl flex items-center justify-center flex-shrink-0">
-                  <Phone className="w-6 h-6 text-red-500" />
+                <div className="w-12 h-12 bg-blue-600/20 rounded-xl flex items-center justify-center flex-shrink-0">
+                  <Phone className="w-6 h-6 text-blue-500" />
                 </div>
                 <div>
                   <h3 className="font-semibold text-white mb-2">Telefone</h3>
                   <a
-                    href="tel:+5547997513609"
-                    className="text-gray-400 hover:text-red-500 transition-colors text-lg font-semibold"
+                    href="tel:+554730171887"
+                    className="text-gray-400 hover:text-blue-500 transition-colors text-lg font-semibold"
                   >
-                    (47) 99751-3609
+                    (47) 3017-1887
                   </a>
                 </div>
               </div>
@@ -100,14 +101,14 @@ export default function Contact() {
           >
             {/* Map Container */}
             <motion.a
-              href="https://maps.google.com/?q=Av.+Alwino+Hansen,+9+-+Adhemar+Garcia,+Joinville/SC"
+              href="https://maps.google.com/?q=R.+Eng.+Eug%C3%AAnio+Junqueira+Neto,+95+-+Adhemar+Garcia,+Joinville+-+SC,+89230-734"
               target="_blank"
               rel="noopener noreferrer"
               className="block group cursor-pointer"
               whileHover={{ scale: 1.02 }}
               transition={{ type: 'spring', stiffness: 300 }}
             >
-              <div className="relative aspect-[4/3] rounded-3xl overflow-hidden border border-white/[0.08] group-hover:border-red-500/40 transition-all duration-700">
+              <div className="relative aspect-[4/3] rounded-3xl overflow-hidden border border-white/[0.08] group-hover:border-blue-500/40 transition-all duration-700">
                 {/* Map Background */}
                 <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-gray-950 to-black">
                   {/* Grid Pattern */}
@@ -147,7 +148,7 @@ export default function Contact() {
                     repeat: Infinity,
                     ease: 'easeInOut',
                   }}
-                  className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-32 h-32 bg-red-600/20 rounded-full blur-3xl"
+                  className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-32 h-32 bg-blue-600/20 rounded-full blur-3xl"
                 />
 
                 {/* Radar Effect */}
@@ -161,7 +162,7 @@ export default function Contact() {
                     repeat: Infinity,
                     ease: 'easeOut',
                   }}
-                  className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-16 h-16 border border-red-500/30 rounded-full"
+                  className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-16 h-16 border border-blue-500/30 rounded-full"
                 />
                 <motion.div
                   animate={{
@@ -174,7 +175,7 @@ export default function Contact() {
                     ease: 'easeOut',
                     delay: 0.7,
                   }}
-                  className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-16 h-16 border border-red-500/20 rounded-full"
+                  className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-16 h-16 border border-blue-500/20 rounded-full"
                 />
 
                 {/* Location Pin */}
@@ -194,16 +195,16 @@ export default function Contact() {
 
                   {/* Pin */}
                   <div className="relative">
-                    <div className="w-8 h-8 bg-gradient-to-br from-red-600 to-red-500 rounded-full flex items-center justify-center shadow-lg shadow-red-500/30">
+                    <div className="w-8 h-8 bg-gradient-to-br from-blue-600 to-blue-500 rounded-full flex items-center justify-center shadow-lg shadow-blue-500/30">
                       <div className="w-3 h-3 bg-white rounded-full" />
                     </div>
-                    <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-0 h-0 border-l-[6px] border-r-[6px] border-t-[8px] border-l-transparent border-r-transparent border-t-red-600" />
+                    <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-0 h-0 border-l-[6px] border-r-[6px] border-t-[8px] border-l-transparent border-r-transparent border-t-blue-600" />
                   </div>
                 </motion.div>
 
                 {/* Floating Icons */}
                 <div className="absolute top-4 left-4 flex items-center space-x-2">
-                  <Pin className="w-4 h-4 text-red-500/60" />
+                  <Pin className="w-4 h-4 text-blue-500/60" />
                   <span className="text-xs text-gray-500 font-medium">
                     Localização física
                   </span>
@@ -226,7 +227,7 @@ export default function Contact() {
                 {/* Distance Indicator */}
                 <div className="absolute bottom-4 left-4">
                   <div className="bg-black/60 backdrop-blur-md border border-white/10 rounded-full px-3 py-1.5 flex items-center space-x-1.5">
-                    <MapPin className="w-3 h-3 text-red-500" />
+                    <MapPin className="w-3 h-3 text-blue-500" />
                     <span className="text-xs text-gray-400">
                       Adhemar Garcia
                     </span>
@@ -234,11 +235,11 @@ export default function Contact() {
                 </div>
 
                 {/* Hover Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-red-600/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center">
+                <div className="absolute inset-0 bg-gradient-to-t from-blue-600/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center">
                   <motion.div
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
-                    className="bg-red-600 text-white px-6 py-3 rounded-full font-medium flex items-center space-x-2 shadow-lg shadow-red-600/30"
+                    className="bg-blue-600 text-white px-6 py-3 rounded-full font-medium flex items-center space-x-2 shadow-lg shadow-blue-600/30"
                   >
                     <MapPin className="w-4 h-4" />
                     <span className="text-sm">Abrir no Google Maps</span>
@@ -248,15 +249,15 @@ export default function Contact() {
 
                 {/* Edge Glow on Hover */}
                 <div className="absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-100 transition-all duration-500">
-                  <div className="absolute inset-0 bg-gradient-to-r from-red-500/20 via-transparent to-red-500/20 rounded-3xl" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-red-500/20 via-transparent to-red-500/20 rounded-3xl" />
+                  <div className="absolute inset-0 bg-gradient-to-r from-blue-500/20 via-transparent to-blue-500/20 rounded-3xl" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-blue-500/20 via-transparent to-blue-500/20 rounded-3xl" />
                 </div>
               </div>
             </motion.a>
 
             {/* WhatsApp CTA */}
             <motion.a
-              href="https://wa.me/5547997513609"
+              href="https://wa.me/554730171887"
               target="_blank"
               rel="noopener noreferrer"
               whileHover={{ scale: 1.02 }}

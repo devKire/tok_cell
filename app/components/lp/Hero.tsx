@@ -19,7 +19,7 @@ export default function Hero() {
       className="relative min-h-screen flex items-center justify-center overflow-hidden"
     >
       {/* Background Gradient - estático */}
-      <div className="absolute inset-0 bg-gradient-radial from-red-900/20 via-black to-black" />
+      <div className="absolute inset-0 bg-gradient-radial from-blue-900/20 via-black to-black" />
 
       {/* Animated Background Glow - otimizado */}
       <motion.div
@@ -32,7 +32,7 @@ export default function Hero() {
           repeat: Infinity,
           ease: 'easeInOut',
         }}
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-red-600/20 rounded-full blur-3xl will-change-transform"
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-blue-600/20 rounded-full blur-3xl will-change-transform"
         style={{ willChange: 'transform, opacity' }}
       />
 
@@ -54,7 +54,7 @@ export default function Hero() {
           position: absolute;
           width: 4px;
           height: 4px;
-          background: rgba(239, 68, 68, 0.3);
+          background: rgba(59, 130, 246, 0.3);
           border-radius: 50%;
           animation: float 4s ease-in-out infinite;
         }
@@ -123,11 +123,11 @@ export default function Hero() {
         >
           <div className="relative inline-block">
             {/* Logo Glow Effect - estático com CSS */}
-            <div className="absolute inset-0 bg-red-600/20 blur-2xl rounded-full scale-150" />
+            <div className="absolute inset-0 bg-blue-600/20 blur-2xl rounded-full scale-150" />
 
             <Image
               src="/logo.png"
-              alt="Jc & Santana Celulares"
+              alt="Tok Cell"
               width={200}
               height={200}
               className="relative z-10 w-32 h-32 sm:w-40 sm:h-40 md:w-48 md:h-48 lg:w-56 lg:h-56 object-contain mx-auto"
@@ -143,10 +143,10 @@ export default function Hero() {
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.3, delay: 0.2 }}
-          className="inline-flex items-center space-x-2 bg-red-600/20 backdrop-blur-sm border border-red-500/30 rounded-full px-4 py-2 mb-6"
+          className="inline-flex items-center space-x-2 bg-blue-600/20 backdrop-blur-sm border border-blue-500/30 rounded-full px-4 py-2 mb-6"
         >
-          <Zap className="w-4 h-4 text-red-500" />
-          <span className="text-red-500 font-semibold text-sm">
+          <Zap className="w-4 h-4 text-blue-500" />
+          <span className="text-blue-500 font-semibold text-sm">
             Conserto em até 1 hora*
           </span>
         </motion.div>
@@ -159,7 +159,7 @@ export default function Hero() {
           className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight"
         >
           Seu celular{' '}
-          <span className="bg-gradient-to-r from-red-600 to-red-400 bg-clip-text text-transparent">
+          <span className="bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">
             novo de novo
           </span>
           <br />
@@ -187,7 +187,7 @@ export default function Hero() {
             <motion.div
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
-              className="bg-red-600 text-white px-8 py-4 rounded-full font-semibold text-lg flex items-center justify-center space-x-2 hover:bg-red-700 transition-colors glow-red cursor-pointer"
+              className="bg-blue-600 text-white px-8 py-4 rounded-full font-semibold text-lg flex items-center justify-center space-x-2 hover:bg-blue-700 transition-colors glow-blue cursor-pointer"
             >
               <span>💰 Fazer Orçamento Agora</span>
               <Zap className="w-4 h-4 ml-2" />

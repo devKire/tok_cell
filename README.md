@@ -35,7 +35,7 @@ The easiest way to deploy your Next.js app is to use the [Vercel Platform](https
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
 
-# Jc & Santana Celulares — Sistema Web
+# Tok Cell — Sistema Web
 
 Sistema de orçamentos e pedidos de assistência técnica de celulares.
 
@@ -127,7 +127,7 @@ npm run dev
 ## .env.example
 
 ```env
-DATABASE_URL="postgresql://user:password@localhost:5432/jc_santana"
+DATABASE_URL="postgresql://user:password@localhost:5432/tok_cell"
 NEXTAUTH_SECRET="sua-secret-key"
 ```
 
@@ -143,12 +143,12 @@ NEXTAUTH_SECRET="sua-secret-key"
 
 ## Regras de negócio
 
-| Regra                  | Valor                        |
-| ---------------------- | ---------------------------- |
-| Desconto multi-serviço | 5% (≥ 2 serviços)            |
-| Taxa de deslocamento   | +7% (atendimento No Local)   |
-| Número WhatsApp        | 5547997513609                |
-| Endereço               | Adhemar Garcia, Joinville/SC |
+| Regra                  | Valor                                                                          |
+| ---------------------- | ------------------------------------------------------------------------------ |
+| Desconto multi-serviço | 5% (≥ 2 serviços)                                                              |
+| Taxa de deslocamento   | +7% (atendimento No Local)                                                     |
+| Número WhatsApp        | 554730171887                                                                   |
+| Endereço               | R. Eng. Eugênio Junqueira Neto, 95 - Adhemar Garcia, Joinville - SC, 89230-734 |
 
 ## Fluxo do cliente
 

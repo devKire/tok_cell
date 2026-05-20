@@ -20,8 +20,9 @@ async function main() {
     update: {},
     create: {
       id: 'default',
-      whatsapp: '5547997513609',
-      address: 'Adhemar Garcia, Joinville/SC',
+      whatsapp: '554730171887',
+      address:
+        'R. Eng. Eugênio Junqueira Neto, 95 - Adhemar Garcia, Joinville - SC, 89230-734',
       city: 'Joinville',
       state: 'SC',
       multiDiscount: 5,

@@ -1,6 +1,6 @@
 import { OrderPayload } from '../types';
 
-const WHATSAPP = '5547997513609';
+const WHATSAPP = '554730171887';
 
 export function formatCurrency(value: number): string {
   return new Intl.NumberFormat('pt-BR', {
@@ -22,7 +22,7 @@ export function buildWhatsAppMessage(payload: OrderPayload): string {
   } = payload;
 
   const lines: string[] = [
-    '📱 *Novo Pedido — Jc & Santana Celulares*',
+    '📱 *Novo Pedido — Tok Cell*',
     '─────────────────────────',
     '',
     `👤 *Cliente:* ${form.name}`,

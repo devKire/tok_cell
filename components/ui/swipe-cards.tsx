@@ -105,14 +105,14 @@ function Card({
 
   // Determinar cor baseada no serviço
   const getServiceColor = (serviceName?: string) => {
-    if (!serviceName) return 'from-red-600 to-red-800';
+    if (!serviceName) return 'from-blue-600 to-blue-800';
     const name = serviceName.toLowerCase();
     if (name.includes('tela')) return 'from-blue-600 to-blue-800';
     if (name.includes('bateria')) return 'from-green-600 to-green-800';
     if (name.includes('placa')) return 'from-purple-600 to-purple-800';
     if (name.includes('desbloqueio')) return 'from-orange-600 to-orange-800';
-    if (name.includes('manutenção')) return 'from-red-600 to-red-800';
-    return 'from-red-600 to-red-800';
+    if (name.includes('manutenção')) return 'from-blue-600 to-blue-800';
+    return 'from-blue-600 to-blue-800';
   };
 
   return (
@@ -131,7 +131,7 @@ function Card({
         transition: '0.1s transform',
         touchAction: 'none',
         boxShadow: isFront
-          ? '0 20px 40px -10px rgba(220, 38, 38, 0.3), 0 0 20px rgba(220, 38, 38, 0.1)'
+          ? '0 20px 40px -10px rgba(37, 99, 235, 0.3), 0 0 20px rgba(37, 99, 235, 0.1)'
           : undefined,
       }}
       animate={{
@@ -175,7 +175,7 @@ function Card({
 
           {/* Localização */}
           {location && (
-            <p className="text-sm text-red-400 font-medium mb-3">{location}</p>
+            <p className="text-sm text-blue-400 font-medium mb-3">{location}</p>
           )}
 
           {/* Descrição */}
@@ -191,7 +191,7 @@ function Card({
               {interests.map((interest) => (
                 <span
                   key={interest}
-                  className="rounded-full bg-red-600/20 border border-red-500/30 px-3 py-1 text-xs text-red-400 backdrop-blur-sm"
+                  className="rounded-full bg-blue-600/20 border border-blue-500/30 px-3 py-1 text-xs text-blue-400 backdrop-blur-sm"
                 >
                   {interest}
                 </span>
@@ -211,7 +211,7 @@ function Card({
 
         {/* Glow Effect no Hover */}
         <div className="absolute inset-0 rounded-2xl opacity-0 hover:opacity-100 transition-opacity duration-300 pointer-events-none">
-          <div className="absolute inset-0 bg-red-600/10 blur-xl rounded-2xl" />
+          <div className="absolute inset-0 bg-blue-600/10 blur-xl rounded-2xl" />
         </div>
       </div>
     </motion.div>

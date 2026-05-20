@@ -215,7 +215,7 @@ export async function createOrderAndNotify(data: CreateOrderInput) {
     const whatsappNumber =
       settings?.whatsapp ||
       process.env.NEXT_PUBLIC_WHATSAPP_NUMBER ||
-      '5547997513609';
+      '554730171887';
 
     return {
       success: true,
@@ -236,7 +236,7 @@ export async function createOrderAndNotify(data: CreateOrderInput) {
 // Função auxiliar para gerar a mensagem do WhatsApp
 function generateOrderMessage(data: CreateOrderInput): string {
   const lines: string[] = [
-    '📱 *Novo Pedido — Jc & Santana Celulares*',
+    '📱 *Novo Pedido — Tok Cell*',
     '─────────────────────────',
     '',
     `👤 *Cliente:* ${data.customerName}`,

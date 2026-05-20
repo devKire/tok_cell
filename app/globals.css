@@ -50,7 +50,7 @@
 
 @layer base {
   :root {
-    --color-primary: #dc2626;
+    --color-primary: #2563eb;
     --color-dark: #0a0a0a;
     --color-white: #ffffff;
     --color-gray: #a1a1a1;
@@ -69,7 +69,7 @@
   }
 
   ::selection {
-    background-color: #dc2626;
+    background-color: #2563eb;
     color: #ffffff;
   }
   html {
@@ -85,12 +85,12 @@
     border-radius: 1rem;
   }
 
-  .glow-red {
-    box-shadow: 0 0 20px rgba(220, 38, 38, 0.3);
+  .glow-blue {
+    box-shadow: 0 0 20px rgba(37, 99, 235, 0.3);
   }
 
   .text-gradient {
-    background: linear-gradient(135deg, #dc2626, #ef4444);
+    background: linear-gradient(135deg, #2563eb, #3b82f6);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -115,7 +115,7 @@
   --card-foreground: #ffffff;
   --popover: #1a1a1a;
   --popover-foreground: #ffffff;
-  --primary: #dc2626;
+  --primary: #2563eb;
   --primary-foreground: #ffffff;
   --secondary: #262626;
   --secondary-foreground: #ffffff;
@@ -123,24 +123,24 @@
   --muted-foreground: #a1a1a1;
   --accent: #262626;
   --accent-foreground: #ffffff;
-  --destructive: #ef4444;
+  --destructive: #3b82f6;
   --border: rgba(255, 255, 255, 0.1);
   --input: rgba(255, 255, 255, 0.15);
-  --ring: #dc2626;
-  --chart-1: #dc2626;
-  --chart-2: #ef4444;
-  --chart-3: #f87171;
-  --chart-4: #fca5a5;
-  --chart-5: #fecaca;
+  --ring: #2563eb;
+  --chart-1: #2563eb;
+  --chart-2: #3b82f6;
+  --chart-3: #60a5fa;
+  --chart-4: #93c5fd;
+  --chart-5: #bfdbfe;
   --radius: 0.625rem;
   --sidebar: #1a1a1a;
   --sidebar-foreground: #ffffff;
-  --sidebar-primary: #dc2626;
+  --sidebar-primary: #2563eb;
   --sidebar-primary-foreground: #ffffff;
   --sidebar-accent: #262626;
   --sidebar-accent-foreground: #ffffff;
   --sidebar-border: rgba(255, 255, 255, 0.1);
-  --sidebar-ring: #dc2626;
+  --sidebar-ring: #2563eb;
 }
 
 /* Tema escuro (mantém consistência) */
@@ -151,7 +151,7 @@
   --card-foreground: #ffffff;
   --popover: #1a1a1a;
   --popover-foreground: #ffffff;
-  --primary: #dc2626;
+  --primary: #2563eb;
   --primary-foreground: #ffffff;
   --secondary: #262626;
   --secondary-foreground: #ffffff;
@@ -159,23 +159,23 @@
   --muted-foreground: #a1a1a1;
   --accent: #262626;
   --accent-foreground: #ffffff;
-  --destructive: #ef4444;
+  --destructive: #3b82f6;
   --border: rgba(255, 255, 255, 0.1);
   --input: rgba(255, 255, 255, 0.15);
-  --ring: #dc2626;
-  --chart-1: #dc2626;
-  --chart-2: #ef4444;
-  --chart-3: #f87171;
-  --chart-4: #fca5a5;
-  --chart-5: #fecaca;
+  --ring: #2563eb;
+  --chart-1: #2563eb;
+  --chart-2: #3b82f6;
+  --chart-3: #60a5fa;
+  --chart-4: #93c5fd;
+  --chart-5: #bfdbfe;
   --sidebar: #1a1a1a;
   --sidebar-foreground: #ffffff;
-  --sidebar-primary: #dc2626;
+  --sidebar-primary: #2563eb;
   --sidebar-primary-foreground: #ffffff;
   --sidebar-accent: #262626;
   --sidebar-accent-foreground: #ffffff;
   --sidebar-border: rgba(255, 255, 255, 0.1);
-  --sidebar-ring: #dc2626;
+  --sidebar-ring: #2563eb;
 }
 
 @theme inline {
@@ -291,7 +291,7 @@ body {
 }
 
 .admin-btn-danger {
-  @apply bg-red-600 text-white hover:bg-red-700;
+  @apply bg-blue-600 text-white hover:bg-blue-700;
 }
 
 .admin-btn-sm {
@@ -312,7 +312,7 @@ body {
 }
 
 .admin-badge-danger {
-  @apply bg-red-100 text-red-700;
+  @apply bg-blue-100 text-blue-700;
 }
 
 .admin-badge-info {

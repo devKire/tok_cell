@@ -216,10 +216,9 @@ function ServiceCard({
                     A troca de vidro é um procedimento de alto risco que envolve
                     aquecimento e separação do vidro do display original. Existe
                     possibilidade de dano ao display durante o processo. Ao
-                    aceitar, você concorda que a Jc &amp; Santana Celulares não
-                    se responsabiliza por danos ocorridos durante a tentativa de
-                    reparo, e que o valor do serviço será cobrado independente
-                    do resultado.
+                    aceitar, você concorda que a Tok Cell não se responsabiliza
+                    por danos ocorridos durante a tentativa de reparo, e que o
+                    valor do serviço será cobrado independente do resultado.
                   </DialogDescription>
                 </DialogHeader>
               </DialogContent>

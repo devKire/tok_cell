@@ -8,8 +8,8 @@ export default function About() {
   return (
     <section id="about" className="py-20 relative overflow-hidden">
       {/* Background Decorations */}
-      <div className="absolute top-0 right-0 w-96 h-96 bg-red-600/5 rounded-full blur-3xl" />
-      <div className="absolute bottom-0 left-0 w-96 h-96 bg-red-600/5 rounded-full blur-3xl" />
+      <div className="absolute top-0 right-0 w-96 h-96 bg-blue-600/5 rounded-full blur-3xl" />
+      <div className="absolute bottom-0 left-0 w-96 h-96 bg-blue-600/5 rounded-full blur-3xl" />
 
       <div className="section-container relative">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
@@ -23,26 +23,25 @@ export default function About() {
           >
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6">
               Sobre a{' '}
-              <span className="bg-gradient-to-r from-red-600 to-red-400 bg-clip-text text-transparent">
-                Jc & Santana
+              <span className="bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">
+                Tok Cell
               </span>
             </h2>
 
             <div className="space-y-4 text-gray-300 text-base sm:text-lg leading-relaxed">
               <p>
-                Somos especialistas em manutenção de celulares em Joinville,
-                oferecendo soluções rápidas e seguras para seu aparelho.
-                Atendemos com transparência, qualidade e agilidade.
+                A Tok Cell é uma empresa estabelecida desde 2016 atuando no
+                mercado de assistência técnica em celulares e venda de
+                acessórios.
               </p>
               <p>
-                Nossa equipe é apaixonada por tecnologia e está sempre
-                atualizada com as últimas tendências e técnicas de reparo.
-                Trabalhamos com as melhores ferramentas e peças do mercado.
+                Temos parcerias com os maiores e melhores fornecedores e
+                fabricantes do ramo, garantindo produtos de qualidade para os
+                nossos clientes.
               </p>
               <p>
-                Localizados no coração do bairro Adhemar Garcia, somos
-                referência em assistência técnica na região. Aqui, seu
-                smartphone é tratado com o cuidado que merece.
+                Estamos localizados em Joinville - SC, com loja física na rua
+                Engenheiro Eugênio Junqueira Neto, 95 - Adhemar Garcia.
               </p>
             </div>
 
@@ -50,7 +49,7 @@ export default function About() {
             <div className="grid grid-cols-3 gap-4 sm:gap-6 mt-8">
               {[
                 { icon: Heart, value: '1000+', label: 'Clientes' },
-                { icon: Target, value: '5+', label: 'Anos Exp.' },
+                { icon: Target, value: '2016', label: 'Desde' },
                 { icon: Users, value: '100%', label: 'Satisfação' },
               ].map((stat, index) => (
                 <motion.div
@@ -62,7 +61,7 @@ export default function About() {
                   whileHover={{ scale: 1.05 }}
                   className="text-center glass-card p-4 rounded-xl"
                 >
-                  <stat.icon className="w-6 h-6 sm:w-8 sm:h-8 text-red-500 mx-auto mb-2" />
+                  <stat.icon className="w-6 h-6 sm:w-8 sm:h-8 text-blue-500 mx-auto mb-2" />
                   <div className="text-xl sm:text-2xl font-bold text-white">
                     {stat.value}
                   </div>
@@ -104,8 +103,8 @@ export default function About() {
             {/* Logo Container */}
             <div className="relative mb-8">
               {/* Multiple Glow Layers */}
-              <div className="absolute inset-0 bg-red-600/20 blur-3xl rounded-full scale-150 animate-pulse" />
-              <div className="absolute inset-0 bg-red-600/10 blur-2xl rounded-full scale-125" />
+              <div className="absolute inset-0 bg-blue-600/20 blur-3xl rounded-full scale-150 animate-pulse" />
+              <div className="absolute inset-0 bg-blue-600/10 blur-2xl rounded-full scale-125" />
 
               {/* Logo Card */}
               <motion.div
@@ -114,11 +113,11 @@ export default function About() {
                 className="relative glass-card p-8 sm:p-10 rounded-3xl"
               >
                 {/* Decorative Border Glow */}
-                <div className="absolute inset-0 rounded-3xl bg-gradient-to-r from-red-600/20 via-transparent to-red-600/20" />
+                <div className="absolute inset-0 rounded-3xl bg-gradient-to-r from-blue-600/20 via-transparent to-blue-600/20" />
 
                 <Image
                   src="/logo.png"
-                  alt="Jc & Santana Celulares"
+                  alt="Tok Cell"
                   width={280}
                   height={280}
                   className="relative z-10 w-48 h-48 sm:w-56 sm:h-56 md:w-64 md:h-64 lg:w-72 lg:h-72 object-contain"
@@ -144,7 +143,7 @@ export default function About() {
                   whileHover={{ scale: 1.02 }}
                   className="glass-card px-4 py-3 rounded-xl flex items-center space-x-3"
                 >
-                  <info.icon className="w-5 h-5 text-red-500 flex-shrink-0" />
+                  <info.icon className="w-5 h-5 text-blue-500 flex-shrink-0" />
                   <span className="text-sm text-gray-300">{info.text}</span>
                 </motion.div>
               ))}
@@ -156,7 +155,7 @@ export default function About() {
                 {[...Array(9)].map((_, i) => (
                   <motion.div
                     key={i}
-                    className="w-2 h-2 bg-red-500 rounded-full"
+                    className="w-2 h-2 bg-blue-500 rounded-full"
                     animate={{
                       opacity: [0.2, 0.5, 0.2],
                       scale: [1, 1.2, 1],
